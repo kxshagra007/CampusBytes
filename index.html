@@ -1,0 +1,4340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Campus Bytes · IIT Kanpur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="data:," />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================================
+       DESIGN TOKENS — LIGHT & DARK THEMES (WARM EDITORIAL CRAFT)
+       ========================================================================= */
+    :root {
+      --bg: #FAF9F6;
+      --surface: #FFFFFF;
+      --surface-soft: #F2EFEA;
+      --surface-hover: #F7F5F1;
+      --ink: #181614;
+      --ink-2: #443F3A;
+      --muted: #6B645C;
+      --border: #E7E2DA;
+      --border-strong: #D4CCC1;
+
+      --accent: #D6451B;
+      --accent-hover: #BA3813;
+      --accent-soft: #FEF1EC;
+      --accent-border: #F8C9B8;
+      --on-accent: #FFFFFF;
+
+      --veg: #15803D;
+      --veg-soft: #ECFDF3;
+      --veg-border: #B7EBC9;
+
+      --nonveg: #B91C1C;
+      --nonveg-soft: #FEF2F2;
+      --nonveg-border: #F8C7C7;
+
+      --amber: #D97706;
+      --amber-soft: #FFFBEB;
+      --amber-border: #FDE68A;
+
+      --indigo: #3730A3;
+      --indigo-soft: #EEF2FF;
+      --indigo-border: #C7D2FE;
+
+      --topbar-bg: rgba(250, 249, 246, 0.88);
+      --backdrop: rgba(24, 22, 20, 0.45);
+      --shadow-sm: 0 2px 8px rgba(24, 22, 20, 0.05);
+      --shadow-md: 0 10px 28px rgba(24, 22, 20, 0.10);
+      --shadow-lg: 0 18px 46px rgba(24, 22, 20, 0.16);
+
+      /* Campus Map Palette */
+      --map-bg: #F3EFE8;
+      --map-park: #DDEBD9;
+      --map-road: #FFFFFF;
+      --map-road-dash: #D8D0C4;
+      --map-node-bg: #FFFFFF;
+      --map-node-border: #DDD5C8;
+      --map-node-ink: #3E3832;
+
+      --r-sm: 8px;
+      --r-md: 12px;
+      --r-lg: 16px;
+      --r-pill: 999px;
+      --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #11100F;
+      --surface: #1B1917;
+      --surface-soft: #24211E;
+      --surface-hover: #211E1B;
+      --ink: #F5F2EC;
+      --ink-2: #D4CEC5;
+      --muted: #9C948A;
+      --border: #2C2926;
+      --border-strong: #3E3934;
+
+      --accent: #F06E43;
+      --accent-hover: #E05C31;
+      --accent-soft: #2C1B14;
+      --accent-border: #5E2E1C;
+      --on-accent: #140B07;
+
+      --veg: #4ADE80;
+      --veg-soft: #102619;
+      --veg-border: #1D4D30;
+
+      --nonveg: #F87171;
+      --nonveg-soft: #2E1515;
+      --nonveg-border: #5E2323;
+
+      --amber: #F59E0B;
+      --amber-soft: #29200C;
+      --amber-border: #574115;
+
+      --indigo: #A5B4FC;
+      --indigo-soft: #1B1A33;
+      --indigo-border: #333066;
+
+      --topbar-bg: rgba(17, 16, 15, 0.88);
+      --backdrop: rgba(0, 0, 0, 0.65);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.50);
+      --shadow-lg: 0 20px 52px rgba(0, 0, 0, 0.65);
+
+      --map-bg: #161412;
+      --map-park: #1C271D;
+      --map-road: #2A2622;
+      --map-road-dash: #3D3833;
+      --map-node-bg: #221F1C;
+      --map-node-border: #38332E;
+      --map-node-ink: #E6E0D6;
+    }
+
+    /* =========================================================================
+       RESET & BASE
+       ========================================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 14.5px;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 104px;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    h1, h2, h3, h4, p { margin: 0; }
+    button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+
+    .tabular { font-variant-numeric: tabular-nums; }
+    .muted { color: var(--muted); }
+    .small { font-size: 12.5px; }
+
+    .ico {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* =========================================================================
+       STICKY FROSTED TOP BAR
+       ========================================================================= */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--topbar-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      display: block;
+      font-size: 17.5px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    .topbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .loc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 5px 12px 5px 9px;
+      max-width: 265px;
+      text-align: left;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .loc-btn:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-hover);
+    }
+
+    .loc-icon-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .loc-meta {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .loc-mode {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--muted);
+      line-height: 1.15;
+    }
+
+    .loc-addr {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+
+    .warn-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--nonveg);
+      flex-shrink: 0;
+    }
+
+    .ctrl-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 11px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-2);
+      transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .ctrl-pill:hover {
+      border-color: var(--border-strong);
+      color: var(--ink);
+      background: var(--surface-hover);
+    }
+
+    .sim-select {
+      border: 0;
+      background: transparent;
+      font-weight: 600;
+      font-size: 12.5px;
+      color: var(--ink);
+      outline: none;
+      cursor: pointer;
+      padding-right: 2px;
+    }
+
+    .sim-select option {
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--ink);
+    }
+
+    /* =========================================================================
+       COMPACT EDITORIAL HERO & SEARCH STRIP
+       ========================================================================= */
+    .hero {
+      padding: 28px 0 8px;
+    }
+
+    .live-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--veg);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .pulse-dot::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: var(--veg);
+      opacity: 0.35;
+      animation: pulseRing 2s infinite ease-out;
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.75); opacity: 0.55; }
+      100% { transform: scale(2.1); opacity: 0; }
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 4.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: var(--ink);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 7px;
+      max-width: 600px;
+    }
+
+    .search-shell {
+      position: relative;
+      margin-top: 18px;
+      max-width: 620px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      display: flex;
+    }
+
+    .hero-search {
+      width: 100%;
+      height: 46px;
+      padding: 0 40px 0 42px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .hero-search::placeholder { color: var(--muted); }
+
+    .hero-search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--surface-soft);
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+    }
+
+    .search-clear:hover { color: var(--ink); }
+
+    /* =========================================================================
+       UNDERLINE SEGMENTED TAB NAVIGATION
+       ========================================================================= */
+    .tab-nav-wrap {
+      margin: 20px 0 18px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-nav-wrap::-webkit-scrollbar { display: none; }
+
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      min-width: max-content;
+    }
+
+    .tab-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 14px 12px;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .tab-btn:hover { color: var(--ink); }
+
+    .tab-btn.active {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .tab-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 5px;
+      border-radius: var(--r-pill);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--surface-soft);
+      color: var(--ink-2);
+    }
+
+    .tab-btn.active .tab-badge {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+
+    .tab-badge.live {
+      background: var(--veg);
+      color: #FFFFFF;
+    }
+
+    /* =========================================================================
+       COMMON SURFACES, BADGES, BUTTONS & LAYOUT UTILITIES
+       ========================================================================= */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2.5px 8px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      line-height: 1.35;
+    }
+
+    .b-open { background: var(--veg-soft); color: var(--veg); }
+    .b-closed { background: var(--surface-soft); color: var(--muted); }
+    .b-accent { background: var(--accent-soft); color: var(--accent); }
+    .b-amber { background: var(--amber-soft); color: var(--amber); }
+    .b-indigo { background: var(--indigo-soft); color: var(--indigo); }
+    .b-danger { background: var(--nonveg-soft); color: var(--nonveg); }
+
+    /* Authentic FSSAI Veg / Non-Veg Square Mark */
+    .diet-mark {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--veg);
+      border-radius: 3px;
+      display: inline-grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .diet-mark::after {
+      content: "";
+      width: 6.5px;
+      height: 6.5px;
+      border-radius: 50%;
+      background: var(--veg);
+    }
+    .diet-mark.nv { border-color: var(--nonveg); }
+    .diet-mark.nv::after {
+      background: var(--nonveg);
+      border-radius: 0;
+      width: 7px;
+      height: 7px;
+      clip-path: polygon(50% 8%, 8% 92%, 92% 92%);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 15px;
+      border-radius: var(--r-sm);
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.2;
+      transition: background-color 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+    .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+    .btn-secondary:hover:not(:disabled) { background: var(--surface-soft); }
+
+    .btn-subtle {
+      background: var(--surface-soft);
+      color: var(--ink-2);
+    }
+    .btn-subtle:hover:not(:disabled) { background: var(--border); color: var(--ink); }
+
+    .btn-danger {
+      background: var(--nonveg-soft);
+      color: var(--nonveg);
+      border-color: var(--nonveg-border);
+    }
+
+    .btn-sm { padding: 6px 11px; font-size: 12.5px; }
+    .btn:disabled { opacity: 0.42; cursor: not-allowed; }
+
+    .flex-between { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .flex-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* =========================================================================
+       HIDDEN DELIVERY GEMS STRIP
+       ========================================================================= */
+    .gems-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(225px, 1fr));
+      gap: 11px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+      scrollbar-width: thin;
+    }
+
+    .gem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      text-align: left;
+      width: 100%;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .gem-card:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+
+    .gem-name {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+
+    /* =========================================================================
+       CATEGORY PILLS & FILTER TOOLBAR
+       ========================================================================= */
+    .cat-strip {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      scrollbar-width: none;
+    }
+    .cat-strip::-webkit-scrollbar { display: none; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.14s ease;
+    }
+
+    .pill:hover {
+      border-color: var(--border-strong);
+      color: var(--ink);
+    }
+
+    .pill.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding: 9px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+    }
+
+    .toggle-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--ink-2);
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: all 0.14s ease;
+    }
+
+    .toggle-chip:hover { border-color: var(--border-strong); color: var(--ink); }
+
+    .toggle-chip.active {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+      color: var(--accent);
+    }
+
+    .toggle-chip.veg.active {
+      background: var(--veg-soft);
+      border-color: var(--veg-border);
+      color: var(--veg);
+    }
+
+    .sort-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .sort-select {
+      padding: 5px 9px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 12.5px;
+      outline: none;
+    }
+
+    /* =========================================================================
+       OUTLET ACCORDIONS & DISH GRIDS
+       ========================================================================= */
+    .outlet-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.15s ease;
+    }
+
+    .outlet-card:hover { border-color: var(--border-strong); }
+
+    .outlet-head {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .outlet-head:hover { background: var(--surface-hover); }
+
+    .outlet-name {
+      font-size: 17.5px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .outlet-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px 10px;
+      margin-top: 4px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .outlet-chev {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .outlet-card.open .outlet-chev {
+      transform: rotate(180deg);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .dish-grid {
+      display: none;
+      grid-template-columns: 1fr;
+      gap: 11px;
+      padding: 14px 18px 18px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .outlet-card.open .dish-grid { display: grid; }
+
+    @media (min-width: 660px) {
+      .dish-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1020px) {
+      .dish-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    .dish-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 11px;
+      display: flex;
+      gap: 11px;
+      transition: border-color 0.14s ease;
+    }
+
+    .dish-card:hover { border-color: var(--border-strong); }
+    .dish-card.sold-out { opacity: 0.58; filter: grayscale(0.4); }
+
+    .dish-thumb {
+      position: relative;
+      width: 86px;
+      height: 86px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    .dish-thumb img, .dish-thumb svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-tag {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      right: 4px;
+      background: rgba(24, 22, 20, 0.8);
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 700;
+      text-align: center;
+      padding: 2px 4px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .dish-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .dish-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .dish-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.28;
+      color: var(--ink);
+    }
+
+    .dish-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-top: 3px;
+    }
+
+    .rating-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: transparent;
+      border: 0;
+      padding: 1px 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-2);
+      text-align: left;
+    }
+
+    .rating-btn:hover { color: var(--accent); }
+    .star-ink { color: var(--amber); }
+
+    .dish-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .price {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .add-btn {
+      padding: 5px 13px;
+      border-radius: 7px;
+      border: 1px solid var(--accent-border);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12.5px;
+      transition: all 0.14s ease;
+    }
+
+    .add-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent);
+      color: var(--on-accent);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .stepper button {
+      width: 26px;
+      height: 26px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      display: grid;
+      place-items: center;
+    }
+
+    .stepper button:hover { background: rgba(0, 0, 0, 0.15); }
+    .stepper span { min-width: 21px; text-align: center; font-size: 12.5px; font-weight: 700; }
+
+    /* =========================================================================
+       HOSTEL MESS COMPANION
+       ========================================================================= */
+    .mess-featured {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--r-lg);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+
+    .crowd-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 11px 14px;
+      border-radius: var(--r-md);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      margin-top: 14px;
+    }
+
+    .mess-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 660px) {
+      .mess-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1000px) {
+      .mess-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    .meal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .meal-card.current {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    .extras-box {
+      margin-top: auto;
+      background: var(--surface-soft);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 12.5px;
+    }
+
+    /* =========================================================================
+       CART, GROUP BILL SPLIT & CHECKOUT
+       ========================================================================= */
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 840px) {
+      .cart-layout { grid-template-columns: 1.45fr 1fr; align-items: start; }
+    }
+
+    .cart-line {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 0;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .cart-thumb {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .cart-thumb img, .cart-thumb svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .group-panel {
+      background: var(--surface);
+      border: 1px solid var(--indigo-border);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .switch-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .switch-row input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent);
+    }
+
+    .split-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 11px;
+      border-radius: 9px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .alert {
+      border-radius: var(--r-md);
+      padding: 11px 14px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      border: 1px solid;
+    }
+
+    .alert-err { background: var(--nonveg-soft); border-color: var(--nonveg-border); color: var(--nonveg); }
+    .alert-ok { background: var(--veg-soft); border-color: var(--veg-border); color: var(--veg); }
+
+    /* =========================================================================
+       LIVE CAMPUS SVG MAP & GATE-SYNC TRACKING
+       ========================================================================= */
+    .map-shell {
+      width: 100%;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--map-bg);
+    }
+
+    .map-shell svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .route-dash {
+      stroke-dasharray: 7 6;
+      animation: dashFlow 1.2s linear infinite;
+    }
+
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -26; }
+    }
+
+    .progress-rail {
+      position: relative;
+      height: 6px;
+      border-radius: 99px;
+      background: var(--surface-soft);
+      margin: 18px 8px 10px;
+    }
+
+    .progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 99px;
+      background: var(--accent);
+      transition: width 0.45s linear;
+    }
+
+    .progress-rider {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--on-accent);
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--surface);
+      box-shadow: var(--shadow-sm);
+      transition: left 0.45s linear;
+    }
+
+    .nudge-box {
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--ink);
+      font-size: 13.5px;
+      margin: 12px 0;
+    }
+
+    .nudge-box.urgent {
+      background: var(--veg-soft);
+      border-color: var(--veg-border);
+    }
+
+    /* =========================================================================
+       FLOATING CART BAR, MODALS, FORMS, TOASTS & FOOTER
+       ========================================================================= */
+    .float-cart {
+      position: fixed;
+      left: 50%;
+      bottom: max(14px, env(safe-area-inset-bottom, 14px));
+      transform: translateX(-50%);
+      width: calc(100% - 28px);
+      max-width: 720px;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: var(--r-lg);
+      padding: 11px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow-lg);
+      z-index: 45;
+    }
+
+    .float-cart.hidden { display: none; }
+
+    .float-cart-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--on-accent);
+      border: 0;
+      border-radius: 9px;
+      padding: 8px 15px;
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--backdrop);
+      z-index: 70;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal.wide { max-width: 760px; }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      padding: 15px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .modal-title {
+      font-size: 17.5px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .close-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--surface-soft);
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+    }
+
+    .close-btn:hover { color: var(--ink); background: var(--border); }
+
+    .modal-body { padding: 18px; }
+
+    .fg { margin-bottom: 12px; }
+    .fl { display: block; font-size: 12px; font-weight: 600; color: var(--ink-2); margin-bottom: 5px; }
+    .fc {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 13.5px;
+      outline: none;
+    }
+    .fc:focus { border-color: var(--accent); background: var(--surface); }
+
+    .zone-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .zone-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 6px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .zone-btn.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .star-picker { display: inline-flex; gap: 3px; margin: 4px 0 10px; }
+    .star-btn {
+      border: 0;
+      background: transparent;
+      color: var(--border-strong);
+      padding: 3px;
+      display: grid;
+      place-items: center;
+    }
+    .star-btn.lit { color: var(--amber); }
+
+    .rev-item {
+      padding: 12px;
+      border-radius: var(--r-sm);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    .receipt-box {
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--r-md);
+      padding: 18px;
+      background: var(--bg);
+    }
+
+    .rcpt-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13.5px;
+      padding: 3px 0;
+    }
+
+    .rcpt-hr { border: 0; border-top: 1px dashed var(--border-strong); margin: 11px 0; }
+
+    .stock-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    .toast-stack {
+      position: fixed;
+      top: 70px;
+      right: 16px;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 340px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 10px 14px;
+      border-radius: var(--r-md);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      pointer-events: auto;
+    }
+
+    .footer {
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .loc-btn { max-width: 195px; }
+      .hero { padding-top: 20px; }
+      .topbar-inner { gap: 8px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #receipt-modal, #receipt-modal * { visibility: visible; }
+      #receipt-modal { position: static; background: #FFFFFF; padding: 0; }
+      #receipt-modal .modal { box-shadow: none; border: 0; max-height: none; }
+      .no-print { display: none !important; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- =========================================================================
+       STICKY FROSTED TOP BAR
+       ========================================================================= -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <button type="button" class="brand" id="btn-brand-home" aria-label="Campus Bytes home">
+        <span class="brand-mark" aria-hidden="true">
+          <!-- Minimal geometric cloche + bite mark -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5.2a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z" fill="currentColor"/>
+            <path d="M4 15.5C4 11.1 7.6 7.5 12 7.5c2.2 0 4.2.9 5.6 2.3a2.6 2.6 0 0 0 1.9 4.2c.3 0 .5.6.5 1.5H4Z" fill="currentColor"/>
+            <rect x="3" y="17.2" width="18" height="2.2" rx="1.1" fill="currentColor" opacity="0.88"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-name">Campus Bytes</span>
+          <span class="brand-sub">IIT Kanpur</span>
+        </span>
+      </button>
+
+      <div class="topbar-controls">
+        <!-- Delivery Location Pill -->
+        <button type="button" class="loc-btn" id="btn-open-profile" title="Edit campus delivery address and contact">
+          <span class="loc-icon-box" id="hdr-zone-icon" aria-hidden="true"></span>
+          <span class="loc-meta">
+            <span class="loc-mode" id="hdr-zone-label">Hostel Gate-Sync</span>
+            <span class="loc-addr" id="hdr-addr-val">Hall 5, Room C-214, Wing 2</span>
+          </span>
+          <span class="warn-dot" id="hdr-warn-dot" style="display:none;" title="Incomplete contact details"></span>
+        </button>
+
+        <!-- Time of Day Simulator -->
+        <label class="ctrl-pill" title="Simulate IIT Kanpur campus time of day">
+          <span id="hdr-clock-ico" aria-hidden="true"></span>
+          <select id="time-sim" class="sim-select" aria-label="Time of day simulator">
+            <option value="live">Live Clock</option>
+            <option value="8">8:00 AM</option>
+            <option value="13">1:00 PM</option>
+            <option value="17">5:00 PM</option>
+            <option value="21">9:00 PM</option>
+            <option value="0.5">12:30 AM</option>
+          </select>
+        </label>
+
+        <!-- Partner Portal -->
+        <button type="button" class="ctrl-pill" id="btn-open-partner">
+          <span id="hdr-store-ico" aria-hidden="true"></span>
+          <span>Partner Portal</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="icon-btn" id="btn-theme" aria-label="Toggle light and dark theme" title="Switch theme"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT SHELL
+       ========================================================================= -->
+  <main class="container">
+    <!-- Compact Airy Hero & Search -->
+    <section class="hero" aria-label="Campus status and search">
+      <div class="live-line">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span id="hero-open-status" class="tabular">Checking open campus outlets...</span>
+      </div>
+      <h1 class="hero-title">Every campus outlet, one cart.</h1>
+      <p class="hero-sub">Order across all 16 IIT Kanpur outlets, check today's mess menu, and sync hostel gate handovers.</p>
+
+      <div class="search-shell">
+        <span class="search-icon" id="search-ico" aria-hidden="true"></span>
+        <input type="search" id="global-search" class="hero-search"
+               placeholder="Search dishes, outlets, or zones — e.g., shawarma, Subway, poha..." autocomplete="off" />
+        <button type="button" class="search-clear" id="btn-clear-search" style="display:none;" aria-label="Clear search"></button>
+      </div>
+    </section>
+
+    <!-- Clean Underline Segmented Tabs -->
+    <div class="tab-nav-wrap">
+      <nav class="tab-nav" id="tab-nav" aria-label="Primary sections"></nav>
+    </div>
+
+    <!-- Active Tab View -->
+    <section id="app-view" aria-live="polite"></section>
+
+    <!-- Understated Footer -->
+    <footer class="footer">
+      <div>Campus Bytes · IIT Kanpur prototype with sample menus &amp; simulated riders</div>
+      <div id="reset-slot">
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-ask">Reset Demo Data</button>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating Cart Bar -->
+  <div class="float-cart hidden" id="float-cart" role="region" aria-label="Cart summary">
+    <div>
+      <strong id="fc-main" class="tabular" style="display:block;font-size:14.5px;">0 items · ₹0</strong>
+      <span id="fc-sub" style="font-size:12px;opacity:0.82;">Across 0 outlets</span>
+    </div>
+    <button type="button" class="float-cart-cta" id="btn-fc-go">
+      <span>View Cart</span>
+      <span id="fc-arrow-ico" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-stack" id="toast-stack" aria-live="assertive"></div>
+
+  <!-- =========================================================================
+       MODAL 1: CAMPUS DELIVERY & CONTACT PROFILE
+       ========================================================================= -->
+  <div class="modal-backdrop" id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="prof-title">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 class="modal-title" id="prof-title">Delivery Address &amp; Contact</h2>
+        <button type="button" class="close-btn" data-close-modal="profile-modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="muted small" style="margin-bottom:13px;">
+          Select your IIT Kanpur zone. Hostels enable Gate-Sync walk alerts; residential quarters and academic blocks show direct doorstep or drop-off ETAs.
+        </p>
+
+        <div class="zone-grid" id="prof-zone-tabs">
+          <button type="button" class="zone-btn" data-zone="hostel"></button>
+          <button type="button" class="zone-btn" data-zone="residential"></button>
+          <button type="button" class="zone-btn" data-zone="academic"></button>
+        </div>
+
+        <div class="fg">
+          <label class="fl" for="pf-area" id="pf-area-lbl">Select Hostel</label>
+          <select id="pf-area" class="fc"></select>
+        </div>
+
+        <div class="fg">
+          <label class="fl" for="pf-detail" id="pf-detail-lbl">Room Number &amp; Wing *</label>
+          <input type="text" id="pf-detail" class="fc" placeholder="e.g., Room C-214, Wing 2" />
+        </div>
+
+        <div class="fg">
+          <label class="fl" for="pf-name">Full Name *</label>
+          <input type="text" id="pf-name" class="fc" placeholder="e.g., Aarav Sharma" />
+        </div>
+
+        <div class="grid-2">
+          <div class="fg">
+            <label class="fl" for="pf-phone">10-Digit Phone *</label>
+            <input type="tel" id="pf-phone" class="fc" maxlength="10" placeholder="9876543210" />
+          </div>
+          <div class="fg">
+            <label class="fl" for="pf-email">Email ID (for receipt) *</label>
+            <input type="email" id="pf-email" class="fc" placeholder="name@iitk.ac.in" />
+          </div>
+        </div>
+
+        <div class="fg">
+          <label class="fl" for="pf-note">Delivery Note (Optional)</label>
+          <input type="text" id="pf-note" class="fc" placeholder="e.g., Call at gate, Leave with guard" />
+        </div>
+
+        <div id="pf-err" class="alert alert-err" style="display:none;"></div>
+
+        <div class="flex-between" style="margin-top:14px;">
+          <button type="button" class="btn btn-secondary" data-close-modal="profile-modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="btn-save-profile">Save Address</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: DISH RATINGS & REVIEWS
+       ========================================================================= -->
+  <div class="modal-backdrop" id="review-modal" role="dialog" aria-modal="true" aria-labelledby="rev-title">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 class="modal-title" id="rev-title">Ratings &amp; Reviews</h2>
+        <button type="button" class="close-btn" data-close-modal="review-modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="review-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 3: PRINTABLE DIGITAL RECEIPT
+       ========================================================================= -->
+  <div class="modal-backdrop" id="receipt-modal" role="dialog" aria-modal="true" aria-labelledby="rcpt-title">
+    <div class="modal">
+      <div class="modal-head no-print">
+        <h2 class="modal-title" id="rcpt-title">Digital Receipt</h2>
+        <button type="button" class="close-btn" data-close-modal="receipt-modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="receipt-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 4: PARTNER PORTAL (LIGHTWEIGHT OUTLET CONTROLS)
+       ========================================================================= -->
+  <div class="modal-backdrop" id="partner-modal" role="dialog" aria-modal="true" aria-labelledby="partner-title">
+    <div class="modal wide">
+      <div class="modal-head">
+        <div>
+          <h2 class="modal-title" id="partner-title">Partner Portal</h2>
+          <p class="muted small">Lightweight controls for IIT Kanpur outlet staff — updates go live immediately.</p>
+        </div>
+        <button type="button" class="close-btn" data-close-modal="partner-modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="partner-modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================================
+       CAMPUS BYTES · IIT KANPUR — SINGLE-FILE APPLICATION ENGINE
+       ========================================================================= */
+    (() => {
+      'use strict';
+
+      const $ = (s, c = document) => c.querySelector(s);
+      const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+      const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[ch]));
+
+      const safeEscapeAttr = (val) => (typeof CSS !== 'undefined' && CSS.escape)
+        ? CSS.escape(val)
+        : String(val).replace(/["\\]/g, '\\$&');
+
+      const clone = (obj) => JSON.parse(JSON.stringify(obj));
+
+      const fmtHour = (h) => {
+        const n = ((h % 24) + 24) % 24;
+        const H = Math.floor(n);
+        const M = Math.round((n - H) * 60);
+        return `${H % 12 || 12}:${String(M).padStart(2, '0')} ${H < 12 ? 'AM' : 'PM'}`;
+      };
+
+      const validPhone = (p) => /^\d{10}$/.test(String(p || '').trim());
+      const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(e || '').trim());
+
+      /* -----------------------------------------------------------------------
+         CRISP 1.75px-STROKE LUCIDE-STYLE INLINE SVG ICONS (ZERO EMOJIS)
+         ----------------------------------------------------------------------- */
+      function ico(name, size = 15, fill = 'none') {
+        const paths = {
+          'map-pin': '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+          'building': '<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/>',
+          'home': '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+          'grad': '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>',
+          'clock': '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+          'store': '<path d="m2 7 4.4-4.4A2 2 0 0 1 7.8 2h8.4a2 2 0 0 1 1.4.6L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2 2.7 2.7 0 0 1-2-1 2.7 2.7 0 0 1-2 1 2.7 2.7 0 0 1-2-1 2.7 2.7 0 0 1-2 1 2.7 2.7 0 0 1-2-1 2.7 2.7 0 0 1-2 1 2 2 0 0 1-2-2V7"/>',
+          'sun': '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-15.07 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2m-15.66 6.34-1.41 1.41m14.14-14.14-1.41 1.41"/>',
+          'moon': '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+          'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+          'x': '<path d="M18 6 6 18M6 6l12 12"/>',
+          'star': '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+          'check': '<polyline points="20 6 9 17 4 12"/>',
+          'users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+          'bike': '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
+          'utensils': '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+          'receipt': '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/>',
+          'copy': '<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
+          'phone': '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+          'chevron-down': '<path d="m6 9 6 6 6-6"/>',
+          'arrow-right': '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+          'plus': '<path d="M5 12h14M12 5v14"/>',
+          'minus': '<path d="M5 12h14"/>',
+          'sliders': '<line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/>',
+          'bag': '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+          'thumbs-up': '<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/>',
+          'thumbs-down': '<path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z"/>',
+          'pause': '<rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/>',
+          'play': '<polygon points="6 3 20 12 6 21 6 3"/>',
+          'fast-forward': '<polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/>',
+          'printer': '<polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/>',
+          'rotate': '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+          'camera': '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>',
+          'compass': '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>'
+        };
+        return `<svg class="ico" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || ''}</svg>`;
+      }
+
+      /* -----------------------------------------------------------------------
+         PERSISTENCE (cb_v1_* NAMESPACE)
+         ----------------------------------------------------------------------- */
+      const STORE = {
+        profile: 'cb_v1_profile',
+        theme: 'cb_v1_theme',
+        photos: 'cb_v1_photos',
+        reviews: 'cb_v1_reviews',
+        soldOut: 'cb_v1_soldout',
+        customItems: 'cb_v1_custom_items',
+        customClose: 'cb_v1_custom_close',
+        orders: 'cb_v1_orders',
+        receipts: 'cb_v1_receipts',
+        messVotes: 'cb_v1_mess_votes'
+      };
+
+      const readLS = (k, fb) => {
+        try {
+          const raw = localStorage.getItem(k);
+          return raw ? JSON.parse(raw) : fb;
+        } catch {
+          return fb;
+        }
+      };
+
+      const writeLS = (k, v) => {
+        try {
+          localStorage.setItem(k, JSON.stringify(v));
+          return true;
+        } catch {
+          toast('Browser storage is full — try a smaller photo or reset demo data.');
+          return false;
+        }
+      };
+
+      function toast(msg) {
+        const stack = $('#toast-stack');
+        const el = document.createElement('div');
+        el.className = 'toast';
+        el.textContent = msg;
+        stack.appendChild(el);
+        setTimeout(() => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(-4px)';
+          el.style.transition = 'all 0.2s ease';
+          setTimeout(() => el.remove(), 220);
+        }, 3200);
+      }
+
+      /* Safe Clipboard Copy (Iframe-friendly) */
+      function copyTextSafe(text) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          const ok = document.execCommand('copy');
+          ta.remove();
+          if (ok) toast('Copied UPI split summary to clipboard.');
+          else toast('Could not copy automatically — please copy manually.');
+        } catch {
+          toast('Could not copy automatically.');
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+         1. CAMPUS ZONES & STYLIZED IIT KANPUR MAP NODES
+         ----------------------------------------------------------------------- */
+      const CAMPUS_NODES = {
+        'New SAC':              { x: 146, y: 124, short: 'New SAC' },
+        'Hall Belt':            { x: 162, y: 244, short: 'Hostel Belt' },
+        'Shopping Complex':     { x: 356, y: 104, short: 'Shopping / MT' },
+        'Campus Plaza':         { x: 382, y: 212, short: 'Campus Plaza' },
+        'Central Campus':       { x: 492, y: 168, short: 'Central Campus' },
+        'Academic / MT':        { x: 526, y: 108, short: 'Academic & Library' },
+        'Residential Quarters': { x: 648, y: 234, short: 'Faculty Quarters' }
+      };
+
+      const ZONE_TO_MAP = {
+        'New SAC': 'New SAC',
+        'Shopping Complex': 'Shopping Complex',
+        'Campus Plaza': 'Campus Plaza',
+        'Hall Belt': 'Hall Belt',
+        'Academic / MT': 'Academic / MT',
+        'Central Campus': 'Central Campus',
+        'Academic Plaza': 'Academic / MT',
+        "Visitors' Plaza": 'Residential Quarters',
+        'Central Library Zone': 'Central Campus',
+        'Health & MT Zone': 'Shopping Complex'
+      };
+
+      const ZONES = {
+        hostel: {
+          label: 'Student Hostels',
+          short: 'Hostel Gate-Sync',
+          icon: 'building',
+          mapNode: 'Hall Belt',
+          areaLabel: 'Select Hostel (Hall 1–14 / GH)',
+          detailLabel: 'Room Number & Wing *',
+          detailPlaceholder: 'e.g., Room C-214, Wing 2',
+          places: [
+            { name: 'Hall 1', walk: 2 }, { name: 'Hall 2', walk: 2 },
+            { name: 'Hall 3', walk: 3 }, { name: 'Hall 4', walk: 3 },
+            { name: 'Hall 5', walk: 2 }, { name: 'Hall 6', walk: 3 },
+            { name: 'Hall 7', walk: 3 }, { name: 'Hall 8', walk: 4 },
+            { name: 'Hall 9', walk: 4 }, { name: 'Hall 10', walk: 4 },
+            { name: 'Hall 11', walk: 4 }, { name: 'Hall 12', walk: 5 },
+            { name: 'Hall 13', walk: 5 }, { name: 'Hall 14', walk: 5 },
+            { name: "Girls' Hostel (GH)", walk: 3 }
+          ]
+        },
+        residential: {
+          label: 'Staff & Faculty',
+          short: 'Doorstep Delivery',
+          icon: 'home',
+          mapNode: 'Residential Quarters',
+          areaLabel: 'Select Residential Block',
+          detailLabel: 'House / Quarter No. & Lane *',
+          detailPlaceholder: 'e.g., House 412, Lane 3',
+          places: [
+            { name: 'Type II Quarters', walk: 0 },
+            { name: 'Type III Quarters', walk: 0 },
+            { name: 'Type IV Quarters', walk: 0 },
+            { name: 'Type V Quarters', walk: 0 },
+            { name: 'Type VI Quarters', walk: 0 },
+            { name: "Visitors' Hostel", walk: 0 },
+            { name: 'RA Towers', walk: 0 }
+          ]
+        },
+        academic: {
+          label: 'Academic & Labs',
+          short: 'Campus Drop-off',
+          icon: 'grad',
+          mapNode: 'Academic / MT',
+          areaLabel: 'Select Building / Landmark',
+          detailLabel: 'Drop-off Point & Lab / Office *',
+          detailPlaceholder: 'e.g., LHC Foyer / RM 304 Lab',
+          places: [
+            { name: 'RM Building', walk: 0 },
+            { name: 'KD Building', walk: 0 },
+            { name: 'Lecture Hall Complex (LHC)', walk: 0 },
+            { name: 'PK Kelkar Library', walk: 0 },
+            { name: 'New SAC', walk: 0 },
+            { name: 'SIIC', walk: 0 },
+            { name: 'Northern Labs', walk: 0 }
+          ]
+        }
+      };
+
+      /* -----------------------------------------------------------------------
+         2. REFINED WARM MUTED CULINARY SVG ILLUSTRATIONS
+         ----------------------------------------------------------------------- */
+      function dishSVG(cat) {
+        const svgs = {
+          burger: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F6EFE4"/>
+            <ellipse cx="60" cy="95" rx="37" ry="6" fill="#E4D5BE"/>
+            <path d="M25 78 C25 90 95 90 95 78 Z" fill="#C47934"/>
+            <rect x="22" y="65" width="76" height="13" rx="6" fill="#6D321C"/>
+            <path d="M22 65 L98 65 L90 73 L75 66 L60 74 L45 66 L30 73 Z" fill="#E8B93C"/>
+            <path d="M21 60 Q31 54 41 59 T60 58 T79 59 T99 57 L99 63 L21 63 Z" fill="#3B874A"/>
+            <path d="M25 56 C25 27 95 27 95 56 Z" fill="#D4662A"/>
+            <ellipse cx="45" cy="40" rx="2.8" ry="1.6" transform="rotate(-16 45 40)" fill="#F9E9C8"/>
+            <ellipse cx="60" cy="35" rx="2.8" ry="1.6" fill="#F9E9C8"/>
+            <ellipse cx="75" cy="41" rx="2.8" ry="1.6" transform="rotate(16 75 41)" fill="#F9E9C8"/>
+          </svg>`,
+
+          pizza: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F7EFE6"/>
+            <path d="M23 36 Q60 17 97 36 L60 99 Z" fill="#C57B32"/>
+            <path d="M29 41 Q60 25 91 41 L60 93 Z" fill="#EFC856"/>
+            <path d="M21 35 Q60 14 99 35 L93 43 Q60 26 27 43 Z" fill="#B85327"/>
+            <circle cx="51" cy="54" r="7" fill="#BA3827"/>
+            <circle cx="70" cy="56" r="6.5" fill="#BA3827"/>
+            <circle cx="60" cy="75" r="6" fill="#BA3827"/>
+            <circle cx="47" cy="67" r="3" fill="#3E7C48"/>
+            <circle cx="69" cy="67" r="3" fill="#3E7C48"/>
+            <circle cx="60" cy="44" r="3.4" fill="#FAF6EE"/>
+          </svg>`,
+
+          biryani: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F5EDE3"/>
+            <path d="M20 62 C20 96 100 96 100 62 Z" fill="#8C3E22"/>
+            <ellipse cx="60" cy="62" rx="40" ry="13" fill="#EED3B1"/>
+            <ellipse cx="60" cy="60" rx="34" ry="10" fill="#D99438"/>
+            <circle cx="46" cy="58" r="5" fill="#A14E20"/>
+            <circle cx="68" cy="61" r="5.5" fill="#8C2A21"/>
+            <circle cx="57" cy="65" r="3.8" fill="#FAF0D7"/>
+            <ellipse cx="76" cy="56" rx="5" ry="2.8" fill="#3C7D46" transform="rotate(-18 76 56)"/>
+            <path d="M47 40 Q45 31 49 24 M60 37 Q58 28 62 21 M73 40 Q71 31 75 24" stroke="#B65B31" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          </svg>`,
+
+          shawarma: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F4EFE6"/>
+            <g transform="rotate(-30 60 62)">
+              <rect x="21" y="43" width="76" height="35" rx="15" fill="#B95D29"/>
+              <rect x="25" y="47" width="68" height="27" rx="11" fill="#DDA04E"/>
+              <rect x="53" y="43" width="44" height="35" rx="8" fill="#FAF8F4" stroke="#DFD7CB" stroke-width="2"/>
+              <circle cx="27" cy="56" r="6" fill="#8F2E24"/>
+              <circle cx="31" cy="65" r="5" fill="#3D7F49"/>
+              <circle cx="37" cy="60" r="4.2" fill="#F8E9BD"/>
+            </g>
+          </svg>`,
+
+          momos: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F6EEEC"/>
+            <ellipse cx="60" cy="83" rx="44" ry="14" fill="#E5DFD7" stroke="#D5CCC2" stroke-width="1.8"/>
+            <circle cx="87" cy="78" r="10.5" fill="#B83629"/>
+            <circle cx="87" cy="78" r="6.8" fill="#D44A3B"/>
+            <path d="M25 77 Q34 50 54 62 Q63 77 45 81 Z" fill="#FBF7EF" stroke="#DFD2BE" stroke-width="1.8"/>
+            <path d="M47 71 Q58 43 77 58 Q81 75 62 77 Z" fill="#FBF7EF" stroke="#DFD2BE" stroke-width="1.8"/>
+            <path d="M36 64 Q44 59 49 66 M56 58 Q65 54 70 61" stroke="#CBBBA3" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M45 37 Q43 29 47 22 M60 33 Q58 25 62 18 M74 38 Q72 30 76 23" stroke="#C25D52" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+          </svg>`,
+
+          roll: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#EEF3EC"/>
+            <g transform="rotate(-24 60 62)">
+              <rect x="23" y="45" width="74" height="32" rx="13" fill="#C47D35"/>
+              <rect x="27" y="49" width="66" height="24" rx="10" fill="#E3AA54"/>
+              <rect x="53" y="45" width="44" height="32" rx="7" fill="#FAF9F6" stroke="#DDD6CA" stroke-width="2"/>
+              <circle cx="28" cy="56" r="5.5" fill="#3B8249"/>
+              <circle cx="31" cy="65" r="4.8" fill="#B83B2C"/>
+              <circle cx="37" cy="61" r="4" fill="#F3DC89"/>
+            </g>
+          </svg>`,
+
+          dosa: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F1F4EC"/>
+            <ellipse cx="60" cy="81" rx="45" ry="17" fill="#3B7A4A"/>
+            <path d="M21 71 L97 41 Q101 58 91 75 L25 83 Z" fill="#A66022"/>
+            <path d="M25 72 L93 47 Q96 58 88 71 L28 79 Z" fill="#DF9A40"/>
+            <circle cx="39" cy="84" r="9" fill="#D56B34" stroke="#FAF9F6" stroke-width="1.8"/>
+            <circle cx="60" cy="88" r="9" fill="#F5ECCE" stroke="#FAF9F6" stroke-width="1.8"/>
+            <circle cx="81" cy="84" r="9" fill="#C84633" stroke="#FAF9F6" stroke-width="1.8"/>
+          </svg>`,
+
+          chai: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F6EEE6"/>
+            <path d="M36 47 L43 92 Q60 98 77 92 L84 47 Z" fill="#B25A31"/>
+            <ellipse cx="60" cy="47" rx="24" ry="7" fill="#CC7546"/>
+            <ellipse cx="60" cy="48" rx="20" ry="5" fill="#6F381D"/>
+            <path d="M39 63 Q60 69 81 63" stroke="#8F4321" stroke-width="2.2" fill="none"/>
+            <path d="M49 34 Q47 26 51 19 M60 32 Q58 23 62 16 M71 34 Q69 26 73 19" stroke="#B65B31" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          </svg>`,
+
+          coffee: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F1EBE4"/>
+            <path d="M37 45 L43 94 Q60 100 77 94 L83 45 Z" fill="#6D4329"/>
+            <path d="M39 57 L81 57 L79 77 L41 77 Z" fill="#F5EBDC"/>
+            <circle cx="60" cy="67" r="7" fill="#2E6B47"/>
+            <rect x="31" y="37" width="58" height="8.5" rx="4" fill="#FAF9F6"/>
+            <path d="M39 37 L43 29 L77 29 L81 37 Z" fill="#DFD8CE"/>
+            <path d="M49 23 Q51 16 48 12 M60 22 Q62 15 59 11 M71 23 Q73 16 70 12" stroke="#8C5B3C" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          </svg>`,
+
+          waffle: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F6F0E4"/>
+            <rect x="24" y="28" width="72" height="68" rx="14" fill="#CE8736"/>
+            <g fill="#8F551D">
+              <rect x="34" y="38" width="13.5" height="13.5" rx="3"/><rect x="53.5" y="38" width="13.5" height="13.5" rx="3"/><rect x="73" y="38" width="13.5" height="13.5" rx="3"/>
+              <rect x="34" y="55.5" width="13.5" height="13.5" rx="3"/><rect x="53.5" y="55.5" width="13.5" height="13.5" rx="3"/><rect x="73" y="55.5" width="13.5" height="13.5" rx="3"/>
+              <rect x="34" y="73" width="13.5" height="13.5" rx="3"/><rect x="53.5" y="73" width="13.5" height="13.5" rx="3"/><rect x="73" y="73" width="13.5" height="13.5" rx="3"/>
+            </g>
+            <path d="M32 33 Q47 57 60 44 T88 39" stroke="#4D2612" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <circle cx="60" cy="40" r="8.5" fill="#FAF6EE"/>
+          </svg>`,
+
+          shake: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F5ECEE"/>
+            <rect x="65" y="13" width="5.5" height="34" rx="2.7" transform="rotate(14 68 30)" fill="#B84B62"/>
+            <path d="M38 47 L44 96 Q60 102 76 96 L82 47 Z" fill="#6F4128"/>
+            <path d="M42 56 L78 56 L74 88 L46 88 Z" fill="#9A6638"/>
+            <path d="M37 47 Q43 31 60 34 Q77 31 83 47 Z" fill="#FAF4EC"/>
+            <circle cx="60" cy="30" r="5.5" fill="#B83629"/>
+          </svg>`,
+
+          kebab: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F6EDEA"/>
+            <line x1="21" y1="93" x2="99" y2="27" stroke="#7E756D" stroke-width="3.8" stroke-linecap="round"/>
+            <rect x="33" y="64" width="16.5" height="16.5" rx="4.5" fill="#A65A2A" transform="rotate(-38 41 72)"/>
+            <rect x="50" y="50" width="16.5" height="16.5" rx="4.5" fill="#BD402C" transform="rotate(-38 58 58)"/>
+            <rect x="67" y="36" width="16.5" height="16.5" rx="4.5" fill="#A65A2A" transform="rotate(-38 75 44)"/>
+            <circle cx="49" cy="65" r="4.8" fill="#3D7F49"/><circle cx="67" cy="51" r="4.8" fill="#DFB23C"/>
+          </svg>`,
+
+          curry: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#F6EEE8"/>
+            <path d="M22 60 C22 95 98 95 98 60 Z" fill="#46403B"/>
+            <path d="M14 60 Q22 54 26 60 M94 60 Q98 54 106 60" stroke="#7C736B" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+            <ellipse cx="60" cy="60" rx="36" ry="12" fill="#CE5D28"/>
+            <rect x="44" y="55" width="9.5" height="7.5" rx="2" fill="#F8ECD4"/>
+            <rect x="64" y="57" width="9.5" height="7.5" rx="2" fill="#F8ECD4"/>
+            <path d="M40 64 Q60 69 78 63" stroke="#FBF5EA" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <circle cx="58" cy="54" r="2.8" fill="#3C7D46"/>
+          </svg>`,
+
+          sub: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#EFF3EC"/>
+            <rect x="16" y="49" width="88" height="29" rx="14" fill="#C27E35"/>
+            <path d="M20 62 Q34 55 48 62 T76 62 T102 62" stroke="#3B8249" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <circle cx="38" cy="60" r="4.8" fill="#BD3C2C"/>
+            <circle cx="62" cy="61" r="4.8" fill="#BD3C2C"/>
+            <circle cx="84" cy="60" r="4.8" fill="#E6BE46"/>
+            <path d="M22 51 C22 37 98 37 98 51 Z" fill="#DDA04A"/>
+            <path d="M37 42 L43 46 M58 40 L64 44 M78 42 L84 46" stroke="#F8ECD3" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>`,
+
+          bowl: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#EDF3EE"/>
+            <path d="M21 62 C21 94 99 94 99 62 Z" fill="#2A655C"/>
+            <ellipse cx="60" cy="62" rx="39" ry="12.5" fill="#ECDB8E"/>
+            <circle cx="44" cy="59" r="6.5" fill="#469656"/>
+            <circle cx="62" cy="57" r="6.5" fill="#D97236"/>
+            <circle cx="77" cy="61" r="5.8" fill="#C4483D"/>
+            <circle cx="54" cy="64" r="4.8" fill="#8A5A9E"/>
+            <circle cx="70" cy="65" r="3.8" fill="#7CA846"/>
+          </svg>`
+        };
+        return svgs[cat] || svgs.curry;
+      }
+
+      /* -----------------------------------------------------------------------
+         3. ALL 16 IIT KANPUR OUTLETS, CATEGORIES & MENUS
+         ----------------------------------------------------------------------- */
+      const CATEGORIES = [
+        { id: 'all', label: 'All Outlets' },
+        { id: 'gems', label: 'Hidden Delivery Gems' },
+        { id: 'latenight', label: 'Late-Night Open' },
+        { id: 'burgers', label: 'Burgers & Fast Food' },
+        { id: 'momos', label: 'Momos & Rolls' },
+        { id: 'north', label: 'North Indian' },
+        { id: 'south', label: 'South Indian' },
+        { id: 'coffee', label: 'Chai & Coffee' },
+        { id: 'waffles', label: 'Shakes & Waffles' },
+        { id: 'healthy', label: 'Healthy & Breakfast' }
+      ];
+
+      const BASE_OUTLETS = [
+        {
+          id: 'naughty-blenders', name: 'Naughty Blenders', zone: 'New SAC',
+          cuisine: 'Burgers, fries, wraps, momos & shakes', open: 11, close: 25, prep: 14, gem: false,
+          cats: ['burgers', 'momos', 'waffles', 'latenight'],
+          items: [
+            { id: 'nb-1', name: 'Classic Veg Burger', price: 129, veg: true, cat: 'burger', tag: 'Bestseller' },
+            { id: 'nb-2', name: 'Chicken Burger', price: 169, veg: false, cat: 'burger', tag: 'Campus Fav' },
+            { id: 'nb-3', name: 'Peri Peri Fries', price: 99, veg: true, cat: 'kebab', tag: 'Late-Night Hit' },
+            { id: 'nb-4', name: 'Veg Wrap', price: 119, veg: true, cat: 'roll' },
+            { id: 'nb-5', name: 'Steamed Momos', price: 99, veg: true, cat: 'momos' },
+            { id: 'nb-6', name: 'Cold Coffee', price: 119, veg: true, cat: 'coffee' },
+            { id: 'nb-7', name: 'Oreo Shake', price: 139, veg: true, cat: 'shake', tag: 'Campus Fav' }
+          ]
+        },
+        {
+          id: 'aladdins', name: "Aladdin's", zone: 'Shopping Complex',
+          cuisine: 'Shawarma, biryani & chicken specials', open: 12, close: 26, prep: 16, gem: false,
+          cats: ['momos', 'north', 'latenight'],
+          items: [
+            { id: 'al-1', name: 'Chicken Shawarma', price: 99, veg: false, cat: 'shawarma', tag: 'Late-Night Hit' },
+            { id: 'al-2', name: 'Chicken Biryani', price: 189, veg: false, cat: 'biryani', tag: 'Bestseller' },
+            { id: 'al-3', name: 'Chicken Tikka', price: 219, veg: false, cat: 'kebab' },
+            { id: 'al-4', name: 'Peri Peri Chicken', price: 209, veg: false, cat: 'kebab', tag: 'Campus Fav' },
+            { id: 'al-5', name: 'Chicken Lollipop', price: 189, veg: false, cat: 'kebab' }
+          ]
+        },
+        {
+          id: 'dominos', name: "Domino's", zone: 'Campus Plaza',
+          cuisine: 'Oven-baked pizzas & garlic sides', open: 11, close: 25, prep: 20, gem: false,
+          cats: ['burgers', 'latenight'],
+          items: [
+            { id: 'dm-1', name: 'Margherita', price: 119, veg: true, cat: 'pizza', tag: 'Bestseller' },
+            { id: 'dm-2', name: 'Farmhouse', price: 289, veg: true, cat: 'pizza', tag: 'Campus Fav' },
+            { id: 'dm-3', name: 'Peppy Paneer', price: 309, veg: true, cat: 'pizza' },
+            { id: 'dm-4', name: 'Chicken Sausage Pizza', price: 299, veg: false, cat: 'pizza' },
+            { id: 'dm-5', name: 'Garlic Breadsticks', price: 109, veg: true, cat: 'sub', tag: 'Late-Night Hit' },
+            { id: 'dm-6', name: 'Choco Lava Cake', price: 109, veg: true, cat: 'waffle' }
+          ]
+        },
+        {
+          id: 'burger-king', name: 'Burger King', zone: 'Campus Plaza',
+          cuisine: 'Flame-grilled burgers & king fries', open: 10, close: 24, prep: 15, gem: false,
+          cats: ['burgers', 'latenight'],
+          items: [
+            { id: 'bk-1', name: 'Crispy Veg Burger', price: 89, veg: true, cat: 'burger', tag: 'Bestseller' },
+            { id: 'bk-2', name: 'Veg Whopper', price: 199, veg: true, cat: 'burger', tag: 'Campus Fav' },
+            { id: 'bk-3', name: 'Chicken Whopper', price: 249, veg: false, cat: 'burger' },
+            { id: 'bk-4', name: 'Chicken Crisp Burger', price: 139, veg: false, cat: 'burger' },
+            { id: 'bk-5', name: 'Medium Fries', price: 99, veg: true, cat: 'kebab' }
+          ]
+        },
+        {
+          id: 'mama-mio', name: 'Mama Mio', zone: 'New SAC',
+          cuisine: 'Belgian waffles, thick shakes & coffee', open: 10, close: 23.5, prep: 12, gem: false,
+          cats: ['waffles', 'coffee'],
+          items: [
+            { id: 'mm-1', name: 'Nutella Waffle', price: 149, veg: true, cat: 'waffle', tag: 'Bestseller' },
+            { id: 'mm-2', name: 'Brownie Waffle', price: 169, veg: true, cat: 'waffle', tag: 'Campus Fav' },
+            { id: 'mm-3', name: 'Chocolate Shake', price: 129, veg: true, cat: 'shake' },
+            { id: 'mm-4', name: 'Cold Coffee', price: 109, veg: true, cat: 'coffee' },
+            { id: 'mm-5', name: 'Hot Coffee', price: 79, veg: true, cat: 'coffee' }
+          ]
+        },
+        {
+          id: 'kathi-roll', name: 'Kathi Roll', zone: 'Hall Belt',
+          cuisine: 'Flaky paratha rolls & wraps', open: 12, close: 25, prep: 11, gem: false,
+          cats: ['momos', 'latenight'],
+          items: [
+            { id: 'kr-1', name: 'Paneer Roll', price: 99, veg: true, cat: 'roll', tag: 'Campus Fav' },
+            { id: 'kr-2', name: 'Egg Roll', price: 89, veg: false, cat: 'roll' },
+            { id: 'kr-3', name: 'Chicken Roll', price: 119, veg: false, cat: 'roll' },
+            { id: 'kr-4', name: 'Double Egg Chicken Roll', price: 139, veg: false, cat: 'roll', tag: 'Late-Night Hit' },
+            { id: 'kr-5', name: 'Veg Wrap', price: 99, veg: true, cat: 'roll' }
+          ]
+        },
+        {
+          id: 'petras-cafe', name: "Petra's Cafe", zone: 'Hall Belt',
+          cuisine: 'Himalayan momos, fries & noodles', open: 11, close: 26, prep: 12, gem: false,
+          cats: ['momos', 'latenight'],
+          items: [
+            { id: 'pc-1', name: 'Steamed Momos', price: 89, veg: true, cat: 'momos', tag: 'Bestseller' },
+            { id: 'pc-2', name: 'Fried Momos', price: 99, veg: true, cat: 'momos', tag: 'Late-Night Hit' },
+            { id: 'pc-3', name: 'Paneer Momos', price: 109, veg: true, cat: 'momos' },
+            { id: 'pc-4', name: 'Peri Peri Fries', price: 99, veg: true, cat: 'kebab' },
+            { id: 'pc-5', name: 'Chilli Garlic Noodles', price: 119, veg: true, cat: 'bowl', tag: 'Campus Fav' }
+          ]
+        },
+        {
+          id: 'mere-pakwan', name: 'Mere Pakwan', zone: 'Shopping Complex',
+          cuisine: 'Kebabs & Indo-Chinese chilli specials', open: 12, close: 23.5, prep: 17, gem: false,
+          cats: ['north'],
+          items: [
+            { id: 'mp-1', name: 'Dahi Kebab', price: 149, veg: true, cat: 'kebab', tag: 'Bestseller' },
+            { id: 'mp-2', name: 'Honey Chilli Potato', price: 139, veg: true, cat: 'kebab', tag: 'Campus Fav' },
+            { id: 'mp-3', name: 'Paneer Chilli', price: 179, veg: true, cat: 'kebab' },
+            { id: 'mp-4', name: 'Veg Manchurian', price: 149, veg: true, cat: 'curry' },
+            { id: 'mp-5', name: 'Hara Bhara Kebab', price: 159, veg: true, cat: 'kebab' }
+          ]
+        },
+        {
+          id: 'swad-sangam', name: 'Swad Sangam', zone: 'Academic / MT',
+          cuisine: 'Crisp dosa, fluffy idli & South Indian', open: 7, close: 22, prep: 12, gem: false,
+          cats: ['south', 'healthy'],
+          items: [
+            { id: 'ss-1', name: 'Masala Dosa', price: 79, veg: true, cat: 'dosa', tag: 'Bestseller' },
+            { id: 'ss-2', name: 'Mysore Masala Dosa', price: 89, veg: true, cat: 'dosa', tag: 'Campus Fav' },
+            { id: 'ss-3', name: 'Idli Sambar (3)', price: 59, veg: true, cat: 'dosa', tag: 'Healthy' },
+            { id: 'ss-4', name: 'Uttapam', price: 79, veg: true, cat: 'dosa' },
+            { id: 'ss-5', name: 'Medu Vada (2)', price: 59, veg: true, cat: 'dosa' }
+          ]
+        },
+        {
+          id: 'bathak', name: 'Bathak', zone: 'Central Campus',
+          cuisine: 'Kulhad chai, bun maska, coffee & Maggi', open: 6.5, close: 23, prep: 9, gem: false,
+          cats: ['coffee'],
+          items: [
+            { id: 'bt-1', name: 'Masala Chai', price: 20, veg: true, cat: 'chai', tag: 'Campus Fav' },
+            { id: 'bt-2', name: 'Kulhad Chai', price: 30, veg: true, cat: 'chai', tag: 'Bestseller' },
+            { id: 'bt-3', name: 'Hot Coffee', price: 40, veg: true, cat: 'coffee' },
+            { id: 'bt-4', name: 'Bun Maska', price: 35, veg: true, cat: 'burger' },
+            { id: 'bt-5', name: 'Maggi', price: 59, veg: true, cat: 'bowl', tag: 'Late-Night Hit' }
+          ]
+        },
+        {
+          id: 'tadka', name: 'Tadka', zone: 'Shopping Complex',
+          cuisine: 'Rich North Indian main course & naan', open: 11.5, close: 23.5, prep: 20, gem: false,
+          cats: ['north'],
+          items: [
+            { id: 'tk-1', name: 'Dal Makhani', price: 169, veg: true, cat: 'curry', tag: 'Bestseller' },
+            { id: 'tk-2', name: 'Paneer Butter Masala', price: 219, veg: true, cat: 'curry', tag: 'Campus Fav' },
+            { id: 'tk-3', name: 'Butter Chicken', price: 259, veg: false, cat: 'curry' },
+            { id: 'tk-4', name: 'Butter Naan', price: 35, veg: true, cat: 'dosa' },
+            { id: 'tk-5', name: 'Jeera Rice', price: 129, veg: true, cat: 'biryani' }
+          ]
+        },
+        {
+          id: 'vazwan-foods', name: 'Vazwan Foods', zone: 'Shopping Complex',
+          cuisine: 'Kashmiri & North Indian main course', open: 12, close: 23, prep: 21, gem: false,
+          cats: ['north'],
+          items: [
+            { id: 'vf-1', name: 'Rogan Josh', price: 289, veg: false, cat: 'curry', tag: 'Bestseller' },
+            { id: 'vf-2', name: 'Kadhai Paneer', price: 219, veg: true, cat: 'curry' },
+            { id: 'vf-3', name: 'Veg Kolhapuri', price: 189, veg: true, cat: 'curry' },
+            { id: 'vf-4', name: 'Chicken Curry', price: 249, veg: false, cat: 'curry' },
+            { id: 'vf-5', name: 'Tandoori Roti', price: 20, veg: true, cat: 'dosa' }
+          ]
+        },
+        {
+          id: 'subway', name: 'Subway', zone: 'Academic Plaza',
+          cuisine: 'Fresh 6" toasted subs & custom salads', open: 10, close: 23, prep: 13, gem: true,
+          cats: ['burgers', 'healthy', 'gems'],
+          items: [
+            { id: 'sw-1', name: 'Veggie Delite 6"', price: 189, veg: true, cat: 'sub', tag: 'Healthy' },
+            { id: 'sw-2', name: 'Paneer Tikka 6"', price: 229, veg: true, cat: 'sub', tag: 'Bestseller' },
+            { id: 'sw-3', name: 'Chicken Teriyaki 6"', price: 259, veg: false, cat: 'sub', tag: 'Campus Fav' },
+            { id: 'sw-4', name: 'Veg Salad Bowl', price: 199, veg: true, cat: 'bowl', tag: 'Healthy' },
+            { id: 'sw-5', name: 'Chocolate Chip Cookie', price: 49, veg: true, cat: 'waffle' }
+          ]
+        },
+        {
+          id: 'starbucks', name: 'Starbucks', zone: "Visitors' Plaza",
+          cuisine: 'Handcrafted espresso, cold brew & bakes', open: 9, close: 22, prep: 12, gem: true,
+          cats: ['coffee', 'waffles', 'gems'],
+          items: [
+            { id: 'sb-1', name: 'Caffè Latte', price: 295, veg: true, cat: 'coffee' },
+            { id: 'sb-2', name: 'Cold Brew', price: 320, veg: true, cat: 'coffee', tag: 'Campus Fav' },
+            { id: 'sb-3', name: 'Java Chip Frappuccino', price: 395, veg: true, cat: 'shake', tag: 'Bestseller' },
+            { id: 'sb-4', name: 'Chocolate Croissant', price: 210, veg: true, cat: 'waffle' }
+          ]
+        },
+        {
+          id: 'cafe-coffee-day', name: 'Cafe Coffee Day', zone: 'Central Library Zone',
+          cuisine: 'Cold coffee, club sandwiches & brownies', open: 9, close: 23, prep: 13, gem: true,
+          cats: ['coffee', 'waffles', 'gems'],
+          items: [
+            { id: 'cc-1', name: 'Cappuccino', price: 169, veg: true, cat: 'coffee' },
+            { id: 'cc-2', name: "Devil's Own Cold Coffee", price: 219, veg: true, cat: 'shake', tag: 'Bestseller' },
+            { id: 'cc-3', name: 'Veg Club Sandwich', price: 179, veg: true, cat: 'sub' },
+            { id: 'cc-4', name: 'Walnut Brownie', price: 129, veg: true, cat: 'waffle', tag: 'Campus Fav' }
+          ]
+        },
+        {
+          id: 'divyam-foods', name: 'Divyam Foods', zone: 'Health & MT Zone',
+          cuisine: 'Indori poha, sprouts & clean healthy bowls', open: 7, close: 20, prep: 10, gem: true,
+          cats: ['healthy', 'gems'],
+          items: [
+            { id: 'df-1', name: 'Indori Poha', price: 49, veg: true, cat: 'bowl', tag: 'Bestseller' },
+            { id: 'df-2', name: 'Sprouts Chaat', price: 79, veg: true, cat: 'bowl', tag: 'Healthy' },
+            { id: 'df-3', name: 'Fresh Fruit Bowl', price: 99, veg: true, cat: 'bowl', tag: 'Healthy' },
+            { id: 'df-4', name: 'Oats Porridge', price: 69, veg: true, cat: 'bowl', tag: 'Healthy' },
+            { id: 'df-5', name: 'Besan Chilla', price: 69, veg: true, cat: 'dosa', tag: 'Campus Fav' }
+          ]
+        }
+      ];
+
+      /* -----------------------------------------------------------------------
+         4. PRE-POPULATED REALISTIC IIT KANPUR REVIEWS
+         ----------------------------------------------------------------------- */
+      const DEFAULT_REVIEWS = {
+        'al-1': [
+          { id: 'r1', author: 'Aarav', area: 'Hall 5', rating: 5, text: 'Best late-night shawarma on campus — crisp and warm even at 1 AM.', date: 'Yesterday' },
+          { id: 'r2', author: 'Kabir R.', area: 'Hall 12', rating: 5, text: 'Garlic sauce is unmatched for ₹99. Never misses during exam week.', date: '3 days ago' }
+        ],
+        'al-2': [
+          { id: 'r3', author: 'Dr. Vivek P.', area: 'Type V Quarters', rating: 5, text: 'Delivered piping hot to Type V doorstep. Aromatic rice and generous portion.', date: '2 days ago' }
+        ],
+        'sw-2': [
+          { id: 'r4', author: 'Dr. Verma', area: 'Type IV Quarters', rating: 5, text: "Didn't know Subway delivered to Type IV quarters! Fresh toasted bread and crisp veggies.", date: '2 days ago' },
+          { id: 'r5', author: 'Neha D.', area: 'Hall 8', rating: 4, text: 'Great lighter switch from oily late-night food.', date: '4 days ago' }
+        ],
+        'sb-2': [
+          { id: 'r6', author: 'Aditi R.', area: 'PK Kelkar Library', rating: 5, text: 'Lifesaver during thesis writing. Cold brew dropped right at Library Main Steps.', date: 'Yesterday' },
+          { id: 'r7', author: 'Prof. Sen', area: 'Type VI Quarters', rating: 4, text: 'Glad Starbucks campus delivery is finally easy to find.', date: '5 days ago' }
+        ],
+        'nb-1': [
+          { id: 'r8', author: 'Rohan M.', area: 'Hall 5', rating: 5, text: 'Crunchy patty and smoky mayo — easily my go-to burger on campus.', date: '2 days ago' }
+        ],
+        'nb-7': [
+          { id: 'r9', author: 'Ananya S.', area: "Girls' Hostel (GH)", rating: 5, text: 'Thick shake with zero ice dilution. Great after evening badminton.', date: '3 days ago' }
+        ],
+        'dm-2': [
+          { id: 'r10', author: 'Devansh K.', area: 'Hall 3', rating: 5, text: 'Combined this with Mama Mio shakes in one cart for our wing study group.', date: '2 days ago' }
+        ],
+        'bk-2': [
+          { id: 'r11', author: 'Ishaan G.', area: 'Hall 2', rating: 4, text: 'Filling Whopper — replaces mess dinner on lazy Sundays.', date: '4 days ago' }
+        ],
+        'mm-1': [
+          { id: 'r12', author: 'Tanvi B.', area: "Girls' Hostel (GH)", rating: 5, text: 'Loaded with Nutella and still crisp when it reached the hostel gate.', date: 'Yesterday' }
+        ],
+        'kr-4': [
+          { id: 'r13', author: 'Yash P.', area: 'Hall 13', rating: 5, text: 'Heavyweight midnight meal. Flaky paratha and spicy double egg chicken.', date: '2 days ago' }
+        ],
+        'pc-1': [
+          { id: 'r14', author: 'Riya J.', area: "Girls' Hostel (GH)", rating: 5, text: 'Red garlic chutney is the highlight. Still steaming at 1:30 AM.', date: 'Yesterday' }
+        ],
+        'mp-1': [
+          { id: 'r15', author: 'Mrs. Sunita R.', area: 'Type III Quarters', rating: 5, text: 'Melt-in-mouth dahi kebabs — guests at our quarters loved them.', date: '3 days ago' }
+        ],
+        'ss-1': [
+          { id: 'r16', author: 'Karthik V.', area: 'KD Building', rating: 5, text: 'Crisp dosa delivered right to KD Building lobby before our 9 AM seminar.', date: '2 days ago' }
+        ],
+        'bt-2': [
+          { id: 'r17', author: 'Saurabh L.', area: 'RM Building', rating: 5, text: 'Earthy kulhad aroma during lab break — unbeatable at ₹30.', date: 'Yesterday' }
+        ],
+        'tk-2': [
+          { id: 'r18', author: 'Dr. Ankit S.', area: 'Type IV Quarters', rating: 5, text: 'Velvety makhani gravy and soft paneer.', date: '4 days ago' }
+        ],
+        'vf-1': [
+          { id: 'r19', author: 'Farhan A.', area: 'Hall 1', rating: 5, text: 'Authentic Kashmiri spices, rich yet balanced.', date: '3 days ago' }
+        ],
+        'cc-2': [
+          { id: 'r20', author: 'Shreya P.', area: 'New SAC', rating: 5, text: "Classic Devil's Own arrived chilled with whipped cream intact.", date: '3 days ago' }
+        ],
+        'df-1': [
+          { id: 'r21', author: 'Prof. Rajesh G.', area: 'Type V Quarters', rating: 5, text: 'Light, hygienic 8 AM Indori poha with fresh pomegranate and sev.', date: 'Yesterday' },
+          { id: 'r22', author: 'Megha C.', area: "Girls' Hostel (GH)", rating: 5, text: 'Best ₹49 healthy breakfast on campus when you miss mess.', date: '4 days ago' }
+        ]
+      };
+
+      /* -----------------------------------------------------------------------
+         5. HOSTEL MESS COMPANION DATA (7 HALLS × 4 MEALS)
+         ----------------------------------------------------------------------- */
+      const MESS_SLOTS = [
+        { id: 'bf', name: 'Breakfast', start: 7.5, end: 9.5 },
+        { id: 'ln', name: 'Lunch', start: 12.0, end: 14.5 },
+        { id: 'sn', name: 'Evening Snacks', start: 17.0, end: 18.25 },
+        { id: 'dn', name: 'Dinner', start: 19.5, end: 21.5 }
+      ];
+
+      const MESS_DATA = {
+        'Hall 1': [
+          { main: 'Aloo paratha, curd, pickle, masala chai', extras: 'Boiled eggs (₹20), Banana shake (₹35)' },
+          { main: 'Rajma masala, jeera rice, roti, kachumber salad', extras: 'Salted buttermilk (₹15), Papad, Curd' },
+          { main: 'Samosa with tamarind chutney, adrak chai', extras: 'Bread pakora (₹20), Cold coffee (₹30)' },
+          { main: 'Paneer butter masala, dal fry, roti, rice', extras: 'Gulab jamun (₹25), Chicken curry (₹85)' }
+        ],
+        'Hall 3': [
+          { main: 'Indori poha, jalebi, banana, ginger tea', extras: 'Double bread omelette (₹35), Milk' },
+          { main: 'Pindi chole, bhature / roti, rice, boondi raita', extras: 'Fruit custard (₹30), Sweet lassi (₹25)' },
+          { main: 'Veg chowmein, tomato ketchup, lemon tea', extras: 'Cheese sandwich (₹35), Maggi (₹30)' },
+          { main: 'Mix veg kadhai, dal tadka, roti, pulao', extras: 'Kesar kheer (₹30), Egg bhurji (₹40)' }
+        ],
+        'Hall 5': [
+          { main: 'Idli sambar, coconut chutney, filter coffee', extras: 'Cornflakes & milk (₹25), Masala omelette (₹30)' },
+          { main: 'Punjabi kadhi pakora, steamed rice, aloo jeera, roti', extras: 'Lemon rice, Shikanji (₹15), Dahi vada (₹30)' },
+          { main: 'Aloo tikki chaat, green chutney, masala tea', extras: 'Bun maska (₹20), Cold coffee (₹30)' },
+          { main: 'Aloo gobhi, yellow dal tadka, roti, plain rice', extras: 'Vanilla ice cream (₹25), Paneer tikka (₹70)' }
+        ],
+        'Hall 8': [
+          { main: 'Puri bhaji, sooji halwa, spiced tea', extras: 'Sprouts chaat (₹20), Boiled eggs (₹20)' },
+          { main: 'Veg dum biryani, boondi raita, green salad', extras: 'Paneer pakora (₹35), Cold drink' },
+          { main: 'Pav bhaji, chopped onion-lemon, chai', extras: 'Veg cutlet (₹25), Banana shake (₹35)' },
+          { main: 'Egg curry / Paneer bhurji, dal makhani, roti, rice', extras: 'Hot jalebi (₹25), Butter naan (₹20)' }
+        ],
+        'Hall 12': [
+          { main: 'Gobhi paratha, mint chutney, curd, tea/coffee', extras: 'Grilled cheese sandwich (₹35), Mango shake (₹40)' },
+          { main: 'Chana dal, bhindi do pyaza, roti, rice, salad', extras: 'Masala chaach (₹15), Curd bowl (₹20)' },
+          { main: 'Crispy spring rolls, Schezwan dip, chai', extras: 'Sweet corn cup (₹25), Hot coffee (₹20)' },
+          { main: 'Malai kofta, arhar dal, butter roti, jeera rice', extras: 'Rasmalai (₹35), Chilli chicken (₹90)' }
+        ],
+        'Hall 13': [
+          { main: 'Masala uttapam, sambar, chutney, tea', extras: 'Egg bhurji (₹35), Sprouts bowl (₹20)' },
+          { main: 'Aloo matar, dal tadka, jeera rice, roti', extras: 'Pineapple raita (₹25), Papad' },
+          { main: 'Vada pav, fried green chilli, masala chai', extras: 'Veg puff (₹20), Iced tea (₹25)' },
+          { main: 'Shahi paneer, mix dal, tandoori roti, pulao', extras: 'Moong dal halwa (₹35), Boiled eggs (₹20)' }
+        ],
+        "Girls' Hostel": [
+          { main: 'Stuffed paneer paratha, curd, seasonal fruit, coffee', extras: 'Oats & honey (₹25), Boiled eggs (₹20)' },
+          { main: 'Dal makhani, aloo capsicum, rice, phulka, salad', extras: 'Fresh lime soda (₹20), Fruit curd (₹30)' },
+          { main: 'Bhel puri / sev puri, ginger tea, iced lemon tea', extras: 'Veg grilled sandwich (₹35), Cold coffee (₹30)' },
+          { main: 'Palak paneer, yellow dal, roti, steamed rice', extras: 'Hot chocolate brownie (₹40), Soup (₹25)' }
+        ]
+      };
+
+      const RIDERS = [
+        { name: 'Ramesh Kumar', tag: 'UP78 CB-402', phone: '9839104412' },
+        { name: 'Sandeep Yadav', tag: 'UP78 CB-118', phone: '9839218734' },
+        { name: 'Deepak Verma', tag: 'UP78 CB-590', phone: '9839452019' },
+        { name: 'Amit Tiwari', tag: 'UP78 CB-274', phone: '9839671190' },
+        { name: 'Vikas Shukla', tag: 'UP78 CB-831', phone: '9839883421' }
+      ];
+
+      /* -----------------------------------------------------------------------
+         6. APPLICATION STATE
+         ----------------------------------------------------------------------- */
+      const DEFAULT_PROFILE = {
+        zone: 'hostel',
+        area: 'Hall 5',
+        detail: 'Room C-214, Wing 2',
+        name: 'Aarav Sharma',
+        phone: '9876543210',
+        email: 'aarav@iitk.ac.in',
+        note: 'Call at Hall 5 main gate'
+      };
+
+      const S = {
+        tab: 'order',
+        time: 'live',
+        q: '',
+        category: 'all',
+        vegOnly: false,
+        openOnly: false,
+        under150: false,
+        sortBy: 'recommended',
+        expanded: new Set(['naughty-blenders', 'subway']),
+        messHall: 'Hall 5',
+        userPickedMess: false,
+        profile: readLS(STORE.profile, { ...DEFAULT_PROFILE }),
+        photos: readLS(STORE.photos, {}),
+        reviews: readLS(STORE.reviews, clone(DEFAULT_REVIEWS)),
+        soldOut: readLS(STORE.soldOut, {}),
+        customItems: readLS(STORE.customItems, {}),
+        customClose: readLS(STORE.customClose, {}),
+        cart: {},
+        groupMode: false,
+        groupMembers: ['You', 'Rohan', 'Ananya'],
+        cartAssign: {},
+        orders: readLS(STORE.orders, []),
+        receipts: readLS(STORE.receipts, {}),
+        messVotes: readLS(STORE.messVotes, {}),
+        clockPaused: false,
+        modalZone: 'hostel',
+        reviewTarget: null,
+        reviewFilterStar: 'all',
+        pendingStars: 5,
+        partnerOutletId: 'naughty-blenders',
+        partnerPhotoDraft: null,
+        partnerSpecialPhotoDraft: null
+      };
+
+      /* -----------------------------------------------------------------------
+         7. SELECTORS & BUSINESS LOGIC
+         ----------------------------------------------------------------------- */
+      function getOutlets() {
+        return BASE_OUTLETS.map((o) => ({
+          ...o,
+          close: S.customClose[o.id] !== undefined ? Number(S.customClose[o.id]) : o.close,
+          items: [...o.items, ...(S.customItems[o.id] || [])]
+        }));
+      }
+
+      function findPair(outletId, itemId) {
+        const outlet = getOutlets().find((o) => o.id === outletId);
+        if (!outlet) return null;
+        const item = outlet.items.find((x) => x.id === itemId);
+        return item ? { outlet, item } : null;
+      }
+
+      function nowMinutes() {
+        if (S.time !== 'live') return parseFloat(S.time) * 60;
+        const d = new Date();
+        return d.getHours() * 60 + d.getMinutes();
+      }
+
+      function isOpen(o) {
+        const m = nowMinutes();
+        const a = o.open * 60;
+        const b = o.close * 60;
+        return (m >= a && m < b) || (m + 1440 >= a && m + 1440 < b);
+      }
+
+      function getItemRating(id) {
+        const list = S.reviews[id] || [];
+        if (!list.length) return { avg: 4.4, count: 0 };
+        const sum = list.reduce((a, r) => a + r.rating, 0);
+        return { avg: +(sum / list.length).toFixed(1), count: list.length };
+      }
+
+      function getOutletRating(o) {
+        let sum = 0, count = 0;
+        o.items.forEach((it) => {
+          (S.reviews[it.id] || []).forEach((r) => { sum += r.rating; count += 1; });
+        });
+        return count ? { avg: +(sum / count).toFixed(1), count } : { avg: 4.5, count: 0 };
+      }
+
+      function itemVisual(item) {
+        const img = S.photos[item.id];
+        if (img) return `<img src="${img}" alt="${esc(item.name)}" /><span class="photo-tag">Real Photo</span>`;
+        return dishSVG(item.cat);
+      }
+
+      function walkTime(zone, area) {
+        if (zone !== 'hostel') return 0;
+        const p = ZONES.hostel.places.find((x) => x.name === area);
+        return p ? p.walk : 3;
+      }
+
+      function fmtAddr(p = S.profile) {
+        return [p.area, p.detail].map((x) => (x || '').trim()).filter(Boolean).join(', ') || 'Select address';
+      }
+
+      function profileErrors(p = S.profile) {
+        const errs = [];
+        if (!(p.name || '').trim()) errs.push('Full Name');
+        if (!(p.area || '').trim()) errs.push('Campus Area');
+        if (!(p.detail || '').trim()) errs.push('Room / House / Drop-off');
+        if (!validPhone(p.phone)) errs.push('10-Digit Phone');
+        if (!validEmail(p.email)) errs.push('Valid Email ID');
+        return errs;
+      }
+
+      function cartGroups() {
+        const map = {};
+        Object.entries(S.cart).forEach(([k, qty]) => {
+          if (qty <= 0) return;
+          const [oid, iid] = k.split('::');
+          const pair = findPair(oid, iid);
+          if (!pair) return;
+          if (!map[oid]) map[oid] = { outlet: pair.outlet, entries: [], subtotal: 0 };
+          map[oid].entries.push({ item: pair.item, qty, key: k, soldOut: !!S.soldOut[iid] });
+          map[oid].subtotal += pair.item.price * qty;
+        });
+        return Object.values(map);
+      }
+
+      function cartSummary() {
+        const groups = cartGroups();
+        let count = 0, total = 0;
+        groups.forEach((g) => {
+          g.entries.forEach((e) => { count += e.qty; });
+          total += g.subtotal;
+        });
+        return { count, outlets: groups.length, total, groups };
+      }
+
+      /* -----------------------------------------------------------------------
+         8. STATIC ICON HYDRATION, THEME, HEADER & TABS
+         ----------------------------------------------------------------------- */
+      function initStaticIcons() {
+        $('#hdr-clock-ico').innerHTML = ico('clock', 14);
+        $('#hdr-store-ico').innerHTML = ico('store', 14);
+        $('#search-ico').innerHTML = ico('search', 16);
+        $('#btn-clear-search').innerHTML = ico('x', 14);
+        $('#fc-arrow-ico').innerHTML = ico('arrow-right', 14);
+        $$('.close-btn').forEach((b) => { b.innerHTML = ico('x', 16); });
+
+        // Populate zone tabs in Profile modal
+        $$('#prof-zone-tabs .zone-btn').forEach((btn) => {
+          const z = ZONES[btn.dataset.zone];
+          if (z) btn.innerHTML = `${ico(z.icon, 16)}<span>${esc(z.label)}</span>`;
+        });
+      }
+
+      function applyTheme(mode, persist = true) {
+        document.documentElement.setAttribute('data-theme', mode);
+        $('#btn-theme').innerHTML = mode === 'dark' ? ico('sun', 16) : ico('moon', 16);
+        if (persist) writeLS(STORE.theme, mode);
+      }
+
+      function updateHeaderAndHero() {
+        const z = ZONES[S.profile.zone] || ZONES.hostel;
+        $('#hdr-zone-icon').innerHTML = ico(z.icon, 15);
+        $('#hdr-zone-label').textContent = z.short;
+        $('#hdr-addr-val').textContent = fmtAddr();
+        $('#hdr-warn-dot').style.display = profileErrors().length ? 'inline-block' : 'none';
+
+        const outlets = getOutlets();
+        const openN = outlets.filter(isOpen).length;
+        const clockTxt = S.time === 'live' ? fmtHour(nowMinutes() / 60) : fmtHour(parseFloat(S.time));
+        $('#hero-open-status').textContent = `${openN} of ${outlets.length} outlets open · ${clockTxt} · Delivering to ${S.profile.area}`;
+
+        $('#btn-clear-search').style.display = S.q ? 'grid' : 'none';
+      }
+
+      function renderTabs() {
+        const { count } = cartSummary();
+        const activeOrders = S.orders.filter((o) => !o.delivered).length;
+        const tabs = [
+          { id: 'order', label: 'Order', icon: 'utensils' },
+          { id: 'mess', label: 'Hostel Mess', icon: 'clock' },
+          { id: 'cart', label: 'Cart', icon: 'bag', badge: count },
+          { id: 'track', label: 'Live Track', icon: 'bike', badge: activeOrders, live: activeOrders > 0 },
+          { id: 'orders', label: 'Orders', icon: 'receipt', badge: S.orders.length }
+        ];
+        $('#tab-nav').innerHTML = tabs.map((t) => `
+          <button type="button" class="tab-btn ${S.tab === t.id ? 'active' : ''}" data-tab="${t.id}">
+            ${ico(t.icon, 14)}
+            <span>${t.label}</span>
+            ${t.badge ? `<span class="tab-badge tabular ${t.live ? 'live' : ''}">${t.badge}</span>` : ''}
+          </button>
+        `).join('');
+      }
+
+      function updateFloatingCart() {
+        const bar = $('#float-cart');
+        const { count, outlets, total } = cartSummary();
+        if (count > 0 && S.tab !== 'cart' && S.tab !== 'track') {
+          bar.classList.remove('hidden');
+          $('#fc-main').textContent = `${count} item${count > 1 ? 's' : ''} · ₹${total}`;
+          $('#fc-sub').textContent = `Across ${outlets} outlet${outlets > 1 ? 's' : ''}${S.groupMode ? ' · Group Split On' : ''}`;
+        } else {
+          bar.classList.add('hidden');
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+         9. TAB 1: ORDER (HIDDEN GEMS + FILTERS + 16 OUTLET ACCORDIONS)
+         ----------------------------------------------------------------------- */
+      function qtyControl(key, open, soldOut) {
+        if (soldOut) return `<span class="badge b-danger">Sold Out</span>`;
+        if (!open) return `<span class="badge b-closed">Closed</span>`;
+        const q = S.cart[key] || 0;
+        if (q > 0) {
+          return `<div class="stepper tabular">
+            <button type="button" data-sub="${esc(key)}" aria-label="Decrease quantity">${ico('minus', 13)}</button>
+            <span>${q}</span>
+            <button type="button" data-add="${esc(key)}" aria-label="Increase quantity">${ico('plus', 13)}</button>
+          </div>`;
+        }
+        return `<button type="button" class="add-btn" data-add="${esc(key)}">+ Add</button>`;
+      }
+
+      function renderOrderTab() {
+        const outlets = getOutlets();
+        const gems = outlets.filter((o) => o.gem);
+
+        const gemsHtml = `
+          <div class="section-head">
+            <h2 class="section-title">
+              <span>Hidden Delivery Gems</span>
+              <span class="badge b-accent">Delivers Campus-Wide</span>
+            </h2>
+            <span class="muted small">Outlets many residents do not know deliver to hostels &amp; quarters</span>
+          </div>
+          <div class="gems-strip">
+            ${gems.map((g) => {
+              const open = isOpen(g);
+              const r = getOutletRating(g);
+              return `
+                <button type="button" class="gem-card" data-jump-outlet="${esc(g.id)}">
+                  <div>
+                    <div class="flex-between" style="margin-bottom:4px;">
+                      <span class="gem-name">${esc(g.name)}</span>
+                      <span class="badge b-amber tabular">${ico('star', 11, 'currentColor')} ${r.avg}</span>
+                    </div>
+                    <p class="muted small" style="margin-bottom:8px;">${esc(g.cuisine)}</p>
+                  </div>
+                  <div class="flex-between" style="width:100%;">
+                    <span class="badge ${open ? 'b-open' : 'b-closed'} tabular">
+                      ${open ? `Open · till ${fmtHour(g.close)}` : `Opens ${fmtHour(g.open)}`}
+                    </span>
+                    <span style="font-size:12px;font-weight:700;color:var(--accent);display:inline-flex;align-items:center;gap:3px;">
+                      Menu ${ico('arrow-right', 12)}
+                    </span>
+                  </div>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        `;
+
+        const controlsHtml = `
+          <div class="cat-strip" id="cat-strip">
+            ${CATEGORIES.map((c) => `
+              <button type="button" class="pill ${S.category === c.id ? 'active' : ''}" data-cat="${c.id}">
+                ${esc(c.label)}
+              </button>
+            `).join('')}
+          </div>
+
+          <div class="filter-bar">
+            <div class="flex-row">
+              <button type="button" class="toggle-chip veg ${S.vegOnly ? 'active' : ''}" data-toggle="vegOnly">
+                <span class="diet-mark" style="margin:0;width:12px;height:12px;"></span>
+                <span>Veg Only</span>
+              </button>
+              <button type="button" class="toggle-chip ${S.openOnly ? 'active' : ''}" data-toggle="openOnly">
+                ${ico('clock', 13)}
+                <span>Open Now</span>
+              </button>
+              <button type="button" class="toggle-chip ${S.under150 ? 'active' : ''}" data-toggle="under150">
+                <span>Under ₹150</span>
+              </button>
+            </div>
+            <label class="sort-wrap">
+              ${ico('sliders', 13)}
+              <span>Sort</span>
+              <select id="sort-select" class="sort-select">
+                <option value="recommended" ${S.sortBy === 'recommended' ? 'selected' : ''}>Recommended</option>
+                <option value="rating" ${S.sortBy === 'rating' ? 'selected' : ''}>Top Rated</option>
+                <option value="fastest" ${S.sortBy === 'fastest' ? 'selected' : ''}>Fastest Delivery</option>
+                <option value="price_asc" ${S.sortBy === 'price_asc' ? 'selected' : ''}>Price: Low to High</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="outlet-feed"></div>
+        `;
+
+        $('#app-view').innerHTML = (!S.q && S.category === 'all' ? gemsHtml : '') + controlsHtml;
+        renderOutletFeed();
+      }
+
+      function renderOutletFeed() {
+        const feed = $('#outlet-feed');
+        if (!feed) return;
+
+        const q = S.q.trim().toLowerCase();
+        const autoExpand = Boolean(q || S.category !== 'all' || S.vegOnly || S.under150);
+
+        let rows = getOutlets().map((o) => {
+          const open = isOpen(o);
+          const oRate = getOutletRating(o);
+          const minPrice = Math.min(...o.items.map((x) => x.price));
+
+          let items = o.items.filter((it) => {
+            if (S.vegOnly && !it.veg) return false;
+            if (S.under150 && it.price > 150) return false;
+            if (!q) return true;
+            return (
+              it.name.toLowerCase().includes(q) ||
+              (it.tag || '').toLowerCase().includes(q) ||
+              o.name.toLowerCase().includes(q) ||
+              o.cuisine.toLowerCase().includes(q) ||
+              o.zone.toLowerCase().includes(q)
+            );
+          });
+
+          if (S.sortBy === 'price_asc') items = [...items].sort((a, b) => a.price - b.price);
+          if (S.sortBy === 'rating') items = [...items].sort((a, b) => getItemRating(b.id).avg - getItemRating(a.id).avg);
+
+          return { o, open, oRate, minPrice, items };
+        }).filter(({ o, open, items }) => {
+          if (!items.length) return false;
+          if (S.openOnly && !open) return false;
+          if (S.category === 'gems' && !o.gem) return false;
+          if (S.category === 'latenight' && o.close < 24) return false;
+          if (S.category !== 'all' && S.category !== 'gems' && S.category !== 'latenight' && !o.cats.includes(S.category)) return false;
+          return true;
+        });
+
+        if (S.sortBy === 'rating') rows.sort((a, b) => b.oRate.avg - a.oRate.avg);
+        else if (S.sortBy === 'fastest') rows.sort((a, b) => a.o.prep - b.o.prep);
+        else if (S.sortBy === 'price_asc') rows.sort((a, b) => a.minPrice - b.minPrice);
+        else rows.sort((a, b) => Number(b.open) - Number(a.open));
+
+        if (!rows.length) {
+          feed.innerHTML = `
+            <div class="card" style="text-align:center;padding:36px 18px;">
+              <div style="color:var(--muted);margin-bottom:8px;">${ico('search', 28)}</div>
+              <h3 style="font-size:17px;font-weight:700;margin-bottom:5px;">No matching outlets right now</h3>
+              <p class="muted small" style="margin-bottom:14px;">Try another search term, clear a filter, or switch the time simulator in the top bar.</p>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-reset-filters">Reset Filters</button>
+            </div>
+          `;
+          return;
+        }
+
+        feed.innerHTML = rows.map(({ o, open, oRate, items }) => {
+          const isExp = autoExpand || S.expanded.has(o.id);
+          return `
+            <article class="outlet-card ${isExp ? 'open' : ''}" id="outlet-${esc(o.id)}">
+              <button type="button" class="outlet-head" data-toggle-outlet="${esc(o.id)}" aria-expanded="${isExp}">
+                <div>
+                  <div class="flex-row" style="gap:7px;">
+                    <h3 class="outlet-name">${esc(o.name)}</h3>
+                    <span class="badge ${open ? 'b-open' : 'b-closed'} tabular">
+                      ${open ? `Open · till ${fmtHour(o.close)}` : `Closed · opens ${fmtHour(o.open)}`}
+                    </span>
+                    <span class="badge b-amber tabular">
+                      ${ico('star', 11, 'currentColor')} ${oRate.avg}${oRate.count ? ` (${oRate.count})` : ''}
+                    </span>
+                    ${o.gem ? `<span class="badge b-accent">Delivers Campus-Wide</span>` : ''}
+                  </div>
+                  <div class="outlet-meta">
+                    <span>${esc(o.cuisine)}</span>
+                    <span>·</span>
+                    <span class="flex-row" style="gap:4px;">${ico('map-pin', 12)} ${esc(o.zone)}</span>
+                    <span>·</span>
+                    <span class="tabular">${o.prep}–${o.prep + 7} min</span>
+                    <span>·</span>
+                    <span>${items.length} item${items.length > 1 ? 's' : ''}</span>
+                  </div>
+                </div>
+                <span class="outlet-chev" aria-hidden="true">${ico('chevron-down', 16)}</span>
+              </button>
+
+              <div class="dish-grid">
+                ${items.map((it) => {
+                  const key = `${o.id}::${it.id}`;
+                  const soldOut = !!S.soldOut[it.id];
+                  const r = getItemRating(it.id);
+                  return `
+                    <div class="dish-card ${soldOut ? 'sold-out' : ''}">
+                      <div class="dish-thumb">${itemVisual(it)}</div>
+                      <div class="dish-info">
+                        <div>
+                          <div class="dish-top">
+                            <span class="diet-mark ${it.veg ? '' : 'nv'}" title="${it.veg ? 'Vegetarian' : 'Non-Vegetarian'}"></span>
+                            <div class="dish-name">${esc(it.name)}</div>
+                          </div>
+                          ${it.tag ? `<span class="dish-tag">${esc(it.tag)}</span>` : ''}
+                        </div>
+
+                        <button type="button" class="rating-btn tabular" data-open-review="${esc(key)}">
+                          <span class="star-ink">${ico('star', 12, 'currentColor')}</span>
+                          <span>${r.avg}</span>
+                          <span class="muted" style="font-weight:500;">(${r.count || 'Rate'})</span>
+                          <span style="color:var(--accent);font-size:11.5px;margin-left:2px;">Reviews</span>
+                        </button>
+
+                        <div class="dish-bottom">
+                          <span class="price tabular">₹${it.price}</span>
+                          <span data-qty="${esc(key)}">${qtyControl(key, open, soldOut)}</span>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      /* -----------------------------------------------------------------------
+         10. TAB 2: HOSTEL MESS COMPANION
+         ----------------------------------------------------------------------- */
+      function renderMessTab() {
+        const halls = Object.keys(MESS_DATA);
+        if (S.profile.zone === 'hostel' && !S.userPickedMess) {
+          const match = halls.find((h) => S.profile.area.startsWith(h));
+          if (match) S.messHall = match;
+        }
+        const meals = MESS_DATA[S.messHall] || MESS_DATA['Hall 5'];
+        const nowH = nowMinutes() / 60;
+        let idx = MESS_SLOTS.findIndex((s) => nowH < s.end);
+        const tomorrow = idx < 0;
+        if (tomorrow) idx = 0;
+        const slot = MESS_SLOTS[idx];
+        const liveNow = !tomorrow && nowH >= slot.start && nowH < slot.end;
+        const openCount = getOutlets().filter(isOpen).length;
+
+        const voteKey = `${S.messHall}::${slot.id}`;
+        const vData = S.messVotes[voteKey] || { up: 19, down: 4, user: null };
+        const pct = Math.round((vData.up / Math.max(1, vData.up + vData.down)) * 100);
+
+        $('#app-view').innerHTML = `
+          <div class="flex-between" style="margin-bottom:14px;">
+            <div>
+              <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.025em;">Hostel Mess Menu</h2>
+              <p class="muted small">Compare today's regular menu and paid extras against open campus outlets.</p>
+            </div>
+            <div class="flex-row">
+              ${halls.map((h) => `
+                <button type="button" class="pill ${S.messHall === h ? 'active' : ''}" data-mess-hall="${esc(h)}">${esc(h)}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="mess-featured">
+            <div class="flex-between">
+              <span class="badge ${liveNow ? 'b-open' : 'b-accent'}">
+                ${liveNow ? 'Serving Now' : tomorrow ? 'Tomorrow Morning' : 'Up Next'}
+              </span>
+              <span class="muted small tabular">${fmtHour(slot.start)} – ${fmtHour(slot.end)}</span>
+            </div>
+
+            <h3 style="font-size:19px;font-weight:800;letter-spacing:-0.02em;margin:8px 0 4px;">
+              ${esc(S.messHall)} · ${slot.name}
+            </h3>
+            <p style="font-size:15px;font-weight:600;margin-bottom:5px;">${esc(meals[idx].main)}</p>
+            <p class="muted small"><strong>Paid Extras:</strong> ${esc(meals[idx].extras)}</p>
+
+            <div class="crowd-row">
+              <div class="flex-row">
+                <strong style="font-size:13px;">Today's Mess Crowd Pulse</strong>
+                <span class="badge b-open tabular">${pct}% worth eating (${vData.up + vData.down} votes)</span>
+              </div>
+              <div class="flex-row">
+                <button type="button" class="btn btn-sm ${vData.user === 'up' ? 'btn-primary' : 'btn-secondary'}" data-mess-vote="up|${esc(voteKey)}">
+                  ${ico('thumbs-up', 13)}
+                  <span>Worth Eating (${vData.up})</span>
+                </button>
+                <button type="button" class="btn btn-sm ${vData.user === 'down' ? 'btn-danger' : 'btn-secondary'}" data-mess-vote="down|${esc(voteKey)}">
+                  ${ico('thumbs-down', 13)}
+                  <span>Skip Today (${vData.down})</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex-between" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
+              <span class="small"><strong>Not feeling today's mess?</strong> ${openCount} of 16 campus outlets are open right now.</span>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-mess-open-outlets">
+                <span>Order from Open Outlets</span>
+                ${ico('arrow-right', 13)}
+              </button>
+            </div>
+          </div>
+
+          <div class="mess-grid">
+            ${MESS_SLOTS.map((sl, i) => `
+              <div class="meal-card ${i === idx && !tomorrow ? 'current' : ''}">
+                <div class="flex-between">
+                  <strong style="font-size:14px;">${sl.name}</strong>
+                  <span class="muted small tabular">${fmtHour(sl.start)}–${fmtHour(sl.end)}</span>
+                </div>
+                <p style="font-size:13.5px;color:var(--ink-2);">${esc(meals[i].main)}</p>
+                <div class="extras-box">
+                  <span style="display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--accent);">Paid Extras</span>
+                  <div style="margin-top:2px;">${esc(meals[i].extras)}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      /* -----------------------------------------------------------------------
+         11. TAB 3: MULTI-OUTLET CART & WING / LAB GROUP BILL SPLIT
+         ----------------------------------------------------------------------- */
+      function computeGroupSplit(groups) {
+        const totals = {};
+        S.groupMembers.forEach((m) => { totals[m] = { amount: 0, lines: [] }; });
+        const fallback = S.groupMembers[0] || 'You';
+
+        groups.forEach((g) => {
+          g.entries.forEach((e) => {
+            let owner = S.cartAssign[e.key];
+            if (!owner || !totals[owner]) {
+              owner = fallback;
+              S.cartAssign[e.key] = owner;
+            }
+            const sub = e.item.price * e.qty;
+            totals[owner].amount += sub;
+            totals[owner].lines.push(`${e.qty}x ${e.item.name} (₹${sub})`);
+          });
+        });
+        return totals;
+      }
+
+      function renderCartTab() {
+        const { count, outlets, total, groups } = cartSummary();
+        if (!count) {
+          $('#app-view').innerHTML = `
+            <div class="card" style="text-align:center;padding:44px 18px;">
+              <div style="color:var(--muted);margin-bottom:8px;">${ico('bag', 30)}</div>
+              <h2 style="font-size:19px;font-weight:700;margin-bottom:6px;">Your cart is empty</h2>
+              <p class="muted small" style="max-width:420px;margin:0 auto 16px;">
+                Add dishes from multiple IIT Kanpur outlets in one cart. Each outlet dispatches its own rider, and you can split the bill with your wing or lab.
+              </p>
+              <button type="button" class="btn btn-primary" data-tab="order">Browse All 16 Outlets</button>
+            </div>
+          `;
+          return;
+        }
+
+        const closedGroups = groups.filter((g) => !isOpen(g.outlet));
+        const soldOutEntries = [];
+        groups.forEach((g) => g.entries.forEach((e) => { if (e.soldOut) soldOutEntries.push(e); }));
+        const pErrs = profileErrors();
+        const canPlace = !closedGroups.length && !soldOutEntries.length && !pErrs.length;
+        const z = ZONES[S.profile.zone] || ZONES.hostel;
+        const splitMap = S.groupMode ? computeGroupSplit(groups) : null;
+
+        $('#app-view').innerHTML = `
+          <div class="cart-layout">
+            <div>
+              ${closedGroups.length ? `
+                <div class="alert alert-err flex-between">
+                  <div><strong>Closed outlet:</strong> ${esc(closedGroups.map((g) => g.outlet.name).join(', '))} is currently closed at this time.</div>
+                  <button type="button" class="btn btn-danger btn-sm" id="btn-drop-closed">Remove Closed</button>
+                </div>
+              ` : ''}
+
+              ${soldOutEntries.length ? `
+                <div class="alert alert-err flex-between">
+                  <div><strong>Sold out:</strong> ${esc(soldOutEntries.map((e) => e.item.name).join(', '))} was marked unavailable by the outlet.</div>
+                  <button type="button" class="btn btn-danger btn-sm" id="btn-drop-soldout">Remove Sold Out</button>
+                </div>
+              ` : ''}
+
+              <!-- Wing / Lab Group Order & Bill Split -->
+              <div class="group-panel">
+                <div class="flex-between">
+                  <label class="switch-row">
+                    <input type="checkbox" id="chk-group-mode" ${S.groupMode ? 'checked' : ''} />
+                    ${ico('users', 16)}
+                    <span>Wing / Lab Group Order &amp; Bill Split</span>
+                  </label>
+                  <span class="badge b-indigo">${S.groupMode ? `${S.groupMembers.length} people` : 'Optional'}</span>
+                </div>
+
+                ${S.groupMode ? `
+                  <p class="muted small" style="margin:6px 0 10px;">Assign each dish to a wingmate or lab teammate and copy a ready-to-share UPI split.</p>
+                  <div class="flex-row" style="margin-bottom:10px;">
+                    ${S.groupMembers.map((m, idx) => `
+                      <span class="badge b-indigo" style="padding:4px 9px;">
+                        ${esc(m)}
+                        ${idx > 0 ? `<button type="button" data-del-member="${esc(m)}" style="border:0;background:transparent;color:inherit;margin-left:3px;padding:0;display:inline-flex;" aria-label="Remove ${esc(m)}">${ico('x', 11)}</button>` : ''}
+                      </span>
+                    `).join('')}
+                  </div>
+                  <div class="flex-row">
+                    <input type="text" id="new-member-input" class="fc" style="flex:1;padding:7px 10px;font-size:13px;" placeholder="Add person (e.g., Kabir, Priya)" />
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-add-member">${ico('plus', 13)} Add</button>
+                  </div>
+                ` : `<p class="muted small" style="margin-top:5px;">Ordering with friends? Turn this on to assign items and auto-calculate everyone's share.</p>`}
+              </div>
+
+              <!-- Outlet Groups -->
+              ${groups.map((g) => {
+                const open = isOpen(g.outlet);
+                return `
+                  <div class="card">
+                    <div class="flex-between" style="margin-bottom:8px;">
+                      <div>
+                        <div class="flex-row" style="gap:7px;">
+                          <strong style="font-size:16.5px;letter-spacing:-0.015em;">${esc(g.outlet.name)}</strong>
+                          <span class="badge ${open ? 'b-open' : 'b-closed'}">
+                            ${open ? 'Own delivery partner' : `Closed · opens ${fmtHour(g.outlet.open)}`}
+                          </span>
+                        </div>
+                        <div class="muted small tabular" style="margin-top:2px;">${esc(g.outlet.zone)} · Subtotal ₹${g.subtotal}</div>
+                      </div>
+                    </div>
+
+                    ${g.entries.map((e) => `
+                      <div class="cart-line">
+                        <div class="cart-thumb">${itemVisual(e.item)}</div>
+                        <div style="flex:1;min-width:135px;">
+                          <div class="flex-row" style="gap:6px;">
+                            <span class="diet-mark ${e.item.veg ? '' : 'nv'}" style="margin-top:0;"></span>
+                            <strong style="font-size:13.5px;">${esc(e.item.name)}</strong>
+                            ${e.soldOut ? `<span class="badge b-danger">Sold Out</span>` : ''}
+                          </div>
+                          <span class="muted small tabular">₹${e.item.price} each</span>
+                        </div>
+
+                        ${S.groupMode ? `
+                          <select class="fc" style="width:auto;padding:5px 8px;font-size:12.5px;" data-assign-item="${esc(e.key)}" aria-label="Assign dish to person">
+                            ${S.groupMembers.map((m) => `<option value="${esc(m)}" ${S.cartAssign[e.key] === m ? 'selected' : ''}>${esc(m)}</option>`).join('')}
+                          </select>
+                        ` : ''}
+
+                        <div style="text-align:right;">
+                          <div class="tabular" style="font-weight:700;margin-bottom:4px;">₹${e.item.price * e.qty}</div>
+                          <div class="stepper tabular">
+                            <button type="button" data-sub="${esc(e.key)}" aria-label="Decrease">${ico('minus', 12)}</button>
+                            <span>${e.qty}</span>
+                            <button type="button" data-add="${esc(e.key)}" aria-label="Increase">${ico('plus', 12)}</button>
+                          </div>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <!-- Right Column: Split Breakdown, Delivery Contact & Checkout -->
+            <div>
+              ${S.groupMode && splitMap ? `
+                <div class="card" style="border-color:var(--indigo-border);">
+                  <div class="flex-between" style="margin-bottom:6px;">
+                    <strong style="font-size:14.5px;">Who Owes What</strong>
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-copy-split">
+                      ${ico('copy', 13)} Copy UPI Split
+                    </button>
+                  </div>
+                  ${Object.entries(splitMap).map(([person, info]) => `
+                    <div class="split-row">
+                      <div>
+                        <strong>${esc(person)}</strong>
+                        <div class="muted small">${info.lines.length ? esc(info.lines.join(', ')) : 'No items assigned'}</div>
+                      </div>
+                      <strong class="tabular" style="color:var(--accent);">₹${info.amount}</strong>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+
+              <div class="card">
+                <div class="flex-between" style="margin-bottom:10px;">
+                  <strong class="flex-row" style="font-size:14.5px;">${ico(z.icon, 15)} Delivery &amp; Contact</strong>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-cart-edit-prof">Edit</button>
+                </div>
+
+                ${pErrs.length ? `
+                  <div class="alert alert-err">Required: <strong>${esc(pErrs.join(', '))}</strong></div>
+                ` : `
+                  <div class="alert alert-ok flex-row" style="padding:8px 11px;">
+                    ${ico('check', 14)} <span>Validated for rider calls &amp; email receipt</span>
+                  </div>
+                `}
+
+                <div style="display:grid;gap:5px;font-size:13px;">
+                  <div><span class="muted">Recipient:</span> <strong>${esc(S.profile.name)}</strong></div>
+                  <div><span class="muted">Zone:</span> <strong>${esc(z.label)}</strong></div>
+                  <div><span class="muted">Address:</span> <strong>${esc(fmtAddr())}</strong></div>
+                  <div><span class="muted">Phone:</span> <strong class="tabular">${esc(S.profile.phone)}</strong></div>
+                  <div><span class="muted">Email:</span> <strong>${esc(S.profile.email)}</strong></div>
+                  ${S.profile.note ? `<div><span class="muted">Note:</span> <span>${esc(S.profile.note)}</span></div>` : ''}
+                </div>
+              </div>
+
+              <div class="card">
+                <h3 style="font-size:16px;font-weight:700;margin-bottom:10px;">Order Summary</h3>
+                <div class="rcpt-row tabular"><span class="muted">Items (${count})</span><strong>₹${total}</strong></div>
+                <div class="rcpt-row tabular"><span class="muted">Separate Outlet Orders</span><strong>${outlets}</strong></div>
+                <div class="rcpt-row"><span class="muted">Campus Delivery</span><strong style="color:var(--veg);">Direct / Free</strong></div>
+                <hr class="rcpt-hr" />
+                <div class="rcpt-row tabular" style="font-size:17px;"><strong>Grand Total</strong><strong>₹${total}</strong></div>
+                <p class="muted small" style="margin:8px 0 14px;">
+                  Each outlet sends its own delivery partner. Pay each partner directly via UPI or Cash at handover.
+                </p>
+                <button type="button" class="btn btn-primary" id="btn-place-order" style="width:100%;padding:11px;" ${canPlace ? '' : 'disabled'}>
+                  Place ${outlets > 1 ? `${outlets} Outlet Orders` : 'Order'} · ₹${total}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function checkoutOrder() {
+        const { groups, total } = cartSummary();
+        if (!groups.length) return;
+        if (groups.some((g) => !isOpen(g.outlet))) {
+          toast('Remove closed outlet items before placing your order.');
+          return;
+        }
+        if (groups.some((g) => g.entries.some((e) => e.soldOut))) {
+          toast('Remove sold-out items before placing your order.');
+          return;
+        }
+        if (profileErrors().length) {
+          openProfileModal();
+          return;
+        }
+
+        const batchId = 'CB-' + Math.floor(100000 + Math.random() * 900000);
+        const nowLabel = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+        const walk = walkTime(S.profile.zone, S.profile.area);
+        const destMapNode = (ZONES[S.profile.zone] || ZONES.hostel).mapNode;
+        const created = [];
+
+        groups.forEach((g, idx) => {
+          const oid = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+          const rider = RIDERS[(Date.now() + idx) % RIDERS.length];
+          const order = {
+            id: oid,
+            batchId,
+            outletId: g.outlet.id,
+            outletName: g.outlet.name,
+            outletZone: g.outlet.zone,
+            fromNode: ZONE_TO_MAP[g.outlet.zone] || 'Shopping Complex',
+            toNode: destMapNode,
+            zone: S.profile.zone,
+            area: S.profile.area,
+            address: fmtAddr(),
+            note: S.profile.note || '',
+            customerName: S.profile.name,
+            customerPhone: S.profile.phone,
+            customerEmail: S.profile.email,
+            walk,
+            prep: 4 + (idx % 3) * 2,
+            ride: 6 + (idx % 3) * 2,
+            elapsed: 0,
+            delivered: false,
+            rider,
+            items: g.entries.map((e) => ({
+              outletId: g.outlet.id,
+              itemId: e.item.id,
+              name: e.item.name,
+              qty: e.qty,
+              price: e.item.price
+            })),
+            total: g.subtotal,
+            placedAt: nowLabel
+          };
+          created.push(order);
+          S.orders.unshift(order);
+        });
+
+        S.receipts[batchId] = {
+          batchId,
+          placedAt: nowLabel,
+          customerName: S.profile.name,
+          zoneLabel: (ZONES[S.profile.zone] || ZONES.hostel).label,
+          address: fmtAddr(),
+          note: S.profile.note || '',
+          phone: S.profile.phone,
+          email: S.profile.email,
+          grandTotal: total,
+          orders: created.map((o) => ({ id: o.id, outletName: o.outletName, items: o.items, total: o.total }))
+        };
+
+        writeLS(STORE.orders, S.orders);
+        writeLS(STORE.receipts, S.receipts);
+
+        S.cart = {};
+        S.tab = 'track';
+        renderAll();
+        openReceiptModal(batchId);
+        toast(`Order placed. Digital receipt sent to ${S.profile.email}`);
+      }
+
+      /* -----------------------------------------------------------------------
+         12. TAB 4: LIVE INTERACTIVE CAMPUS SVG MAP & GATE-SYNC TRACKER
+         ----------------------------------------------------------------------- */
+      function buildCampusMapSVG(trackedOrders) {
+        const destNodeKey = (ZONES[S.profile.zone] || ZONES.hostel).mapNode;
+        const dest = CAMPUS_NODES[destNodeKey] || CAMPUS_NODES['Hall Belt'];
+
+        const routeLayers = trackedOrders.map((od, i) => {
+          const from = CAMPUS_NODES[od.fromNode] || CAMPUS_NODES['Shopping Complex'];
+          const to = CAMPUS_NODES[od.toNode] || dest;
+          const midX = (from.x + to.x) / 2;
+          const midY = (from.y + to.y) / 2 - (i % 2 === 0 ? 38 : -34);
+          const color = i % 2 === 0 ? '#D6451B' : '#3730A3';
+          return `
+            <path d="M ${from.x} ${from.y} Q ${midX} ${midY} ${to.x} ${to.y}"
+                  fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" opacity="0.20"/>
+            <path id="map-path-${esc(od.id)}" class="route-dash"
+                  d="M ${from.x} ${from.y} Q ${midX} ${midY} ${to.x} ${to.y}"
+                  fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round"/>
+            <g id="map-rider-${esc(od.id)}" transform="translate(${from.x},${from.y})">
+              <circle r="11" fill="${color}" stroke="#FFFFFF" stroke-width="2.2"/>
+              <path d="M-3.5 1.5 h7 M-2.5 3.5 a1.6 1.6 0 1 0 0 .01 M2.5 3.5 a1.6 1.6 0 1 0 0 .01 M-1 -2.5 l2.2 0 l1.8 3" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="-38" y="-29" width="76" height="16" rx="5" fill="#181614" opacity="0.9"/>
+              <text y="-18" text-anchor="middle" font-size="9" font-weight="700" fill="#FFFFFF">${esc(od.outletName.slice(0, 12))}</text>
+            </g>
+          `;
+        }).join('');
+
+        return `
+          <svg viewBox="0 0 780 305" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IIT Kanpur Campus Live Delivery Map">
+            <rect width="780" height="305" fill="var(--map-bg)"/>
+
+            <!-- Campus Lawns -->
+            <ellipse cx="264" cy="182" rx="92" ry="60" fill="var(--map-park)" opacity="0.8"/>
+            <ellipse cx="566" cy="176" rx="84" ry="50" fill="var(--map-park)" opacity="0.72"/>
+            <rect x="28" y="24" width="136" height="62" rx="16" fill="var(--map-park)" opacity="0.75"/>
+
+            <!-- Campus Road Grid -->
+            <g stroke="var(--map-road)" stroke-width="7" stroke-linecap="round" fill="none">
+              <path d="M 55 124 L 725 124"/>
+              <path d="M 80 242 L 705 242"/>
+              <path d="M 152 50 L 152 274"/>
+              <path d="M 366 44 L 366 274"/>
+              <path d="M 526 52 L 526 274"/>
+              <path d="M 648 82 L 648 274"/>
+            </g>
+            <g stroke="var(--map-road-dash)" stroke-width="1.4" stroke-dasharray="6 6" fill="none">
+              <path d="M 55 124 L 725 124"/>
+              <path d="M 80 242 L 705 242"/>
+              <path d="M 366 44 L 366 274"/>
+            </g>
+
+            <!-- 7 IIT Kanpur Landmark Nodes -->
+            ${Object.entries(CAMPUS_NODES).map(([key, n]) => {
+              const isDest = key === destNodeKey;
+              return `
+                <g transform="translate(${n.x},${n.y})">
+                  ${isDest ? `<circle r="17" fill="#15803D" opacity="0.18"/>` : ''}
+                  <circle r="${isDest ? 8 : 5.5}" fill="${isDest ? '#15803D' : '#6B645C'}" stroke="#FFFFFF" stroke-width="2"/>
+                  <rect x="-52" y="11" width="104" height="18" rx="5" fill="var(--map-node-bg)" stroke="var(--map-node-border)" stroke-width="1"/>
+                  <text y="23" text-anchor="middle" font-size="9.5" font-weight="700" fill="${isDest ? '#15803D' : 'var(--map-node-ink)'}">${esc(n.short)}</text>
+                </g>
+              `;
+            }).join('')}
+
+            <!-- Animated Routes & Riders -->
+            ${routeLayers}
+
+            <!-- Legend Pill -->
+            <rect x="14" y="12" width="188" height="24" rx="6" fill="#181614" opacity="0.86"/>
+            <text x="25" y="27.5" font-size="10" font-weight="700" fill="#FFFFFF">IIT Kanpur · Live Delivery Map</text>
+          </svg>
+        `;
+      }
+
+      function renderTrackTab() {
+        const active = S.orders.filter((o) => !o.delivered);
+        const recent = S.orders.slice(0, 5);
+
+        if (!recent.length) {
+          $('#app-view').innerHTML = `
+            <div class="card" style="text-align:center;padding:44px 18px;">
+              <div style="color:var(--muted);margin-bottom:8px;">${ico('compass', 30)}</div>
+              <h2 style="font-size:19px;font-weight:700;margin-bottom:6px;">No active deliveries</h2>
+              <p class="muted small" style="max-width:440px;margin:0 auto 16px;">
+                Place an order from any open outlet to track riders live across the IIT Kanpur campus map with hostel gate-sync countdowns.
+              </p>
+              <button type="button" class="btn btn-primary" data-tab="order">Browse Open Outlets</button>
+            </div>
+          `;
+          return;
+        }
+
+        $('#app-view').innerHTML = `
+          <div class="card">
+            <div class="flex-between" style="margin-bottom:11px;">
+              <div class="flex-row">
+                <strong style="font-size:15px;">Live Campus Map &amp; Gate-Sync</strong>
+                <span class="badge b-accent tabular">1 sec = 1 min (${S.clockPaused ? 'Paused' : 'Running'})</span>
+              </div>
+              <div class="flex-row">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-sim-pause">
+                  ${S.clockPaused ? `${ico('play', 12)} Resume` : `${ico('pause', 12)} Pause`}
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-sim-ff">
+                  ${ico('fast-forward', 13)} +2 min Fast-Forward
+                </button>
+              </div>
+            </div>
+            <div class="map-shell">${buildCampusMapSVG(active.length ? active : recent.slice(0, 1))}</div>
+          </div>
+
+          ${recent.map((od) => {
+            const isHostel = od.zone === 'hostel';
+            const destTxt = isHostel ? `${od.area} Gate` : od.area;
+            const summary = od.items.map((x) => `${x.qty}x ${x.name}`).join(', ');
+            return `
+              <article class="card">
+                <div class="flex-between">
+                  <div>
+                    <div class="flex-row" style="gap:7px;">
+                      <h3 style="font-size:17px;font-weight:700;letter-spacing:-0.015em;">${esc(od.outletName)}</h3>
+                      <span class="badge b-closed tabular">#${esc(od.id)}</span>
+                      <span class="badge ${od.delivered ? 'b-open' : 'b-accent'}" id="od-badge-${esc(od.id)}">
+                        ${od.delivered ? 'Delivered' : 'Active'}
+                      </span>
+                    </div>
+                    <p class="muted small" style="margin-top:3px;">${esc(summary)} · <strong class="tabular">₹${od.total}</strong></p>
+                  </div>
+                  <span class="muted small">${esc(od.placedAt)}</span>
+                </div>
+
+                <!-- Progress Rail -->
+                <div class="progress-rail">
+                  <div class="progress-fill" id="od-fill-${esc(od.id)}" style="width:0%;"></div>
+                  <div class="progress-rider" id="od-scoot-${esc(od.id)}" style="left:0%;">${ico('bike', 13)}</div>
+                </div>
+                <div class="flex-between muted small" style="font-weight:600;">
+                  <span>${esc(od.outletName)} (${esc(od.outletZone)})</span>
+                  <span>${esc(destTxt)}</span>
+                </div>
+
+                <!-- Smart Gate-Sync / Direct ETA Banner -->
+                <div class="nudge-box" id="od-nudge-${esc(od.id)}"></div>
+
+                <!-- Delivery Partner Strip -->
+                <div class="flex-between" style="padding:10px 12px;border-radius:10px;background:var(--bg);border:1px solid var(--border);margin-bottom:12px;font-size:13px;">
+                  <div>
+                    <div><strong>Partner:</strong> ${esc(od.rider.name)} <span class="badge b-closed tabular">${esc(od.rider.tag)}</span></div>
+                    <div class="muted small">Drop-off: <strong>${esc(od.address)}</strong> · Contact shared: ${esc(od.customerPhone)}</div>
+                  </div>
+                  <a href="tel:+91${esc(od.rider.phone)}" class="btn btn-secondary btn-sm" data-call-rider="${esc(od.id)}" style="text-decoration:none;">
+                    ${ico('phone', 13)} Call Partner
+                  </a>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex-between">
+                  <div class="flex-row">
+                    <button type="button" class="btn btn-secondary btn-sm" data-open-receipt="${esc(od.batchId)}">
+                      ${ico('receipt', 13)} View Receipt
+                    </button>
+                    ${od.items.length === 1
+                      ? `<button type="button" class="btn btn-primary btn-sm" data-open-review="${esc(od.items[0].outletId + '::' + od.items[0].itemId)}">${ico('star', 13)} Rate Dish</button>`
+                      : `<select class="fc" style="width:auto;padding:6px 9px;font-size:12.5px;" data-rate-select>
+                          <option value="">Rate a dish...</option>
+                          ${od.items.map((x) => `<option value="${esc(x.outletId + '::' + x.itemId)}">Rate: ${esc(x.name)}</option>`).join('')}
+                        </select>`
+                    }
+                  </div>
+                  ${!od.delivered ? `
+                    <button type="button" class="btn btn-secondary btn-sm" data-mark-done="${esc(od.id)}">
+                      ${ico('check', 13)} Confirm Handover
+                    </button>
+                  ` : ''}
+                </div>
+              </article>
+            `;
+          }).join('')}
+        `;
+
+        tickTrackingUI();
+      }
+
+      function tickTrackingUI() {
+        let changed = false;
+
+        S.orders.forEach((od) => {
+          const fill = $(`#od-fill-${safeEscapeAttr(od.id)}`);
+          const scoot = $(`#od-scoot-${safeEscapeAttr(od.id)}`);
+          const nudge = $(`#od-nudge-${safeEscapeAttr(od.id)}`);
+          const badge = $(`#od-badge-${safeEscapeAttr(od.id)}`);
+          if (!fill || !scoot || !nudge || !badge) return;
+
+          const eta = od.prep + od.ride;
+          const s = od.delivered ? eta + 5 : od.elapsed;
+          const left = Math.max(0, eta - s);
+          const isHostel = od.zone === 'hostel';
+
+          let pct = 0;
+          if (od.delivered || s >= eta) pct = 100;
+          else if (s < od.prep) pct = Math.min(14, (s / od.prep) * 14);
+          else pct = 14 + ((s - od.prep) / od.ride) * 86;
+
+          fill.style.width = `${pct.toFixed(1)}%`;
+          scoot.style.left = `${pct.toFixed(1)}%`;
+
+          // Move rider along SVG quadratic path
+          const pathEl = $(`#map-path-${safeEscapeAttr(od.id)}`);
+          const riderEl = $(`#map-rider-${safeEscapeAttr(od.id)}`);
+          if (pathEl && riderEl && typeof pathEl.getTotalLength === 'function') {
+            const len = pathEl.getTotalLength();
+            const frac = od.delivered ? 1 : (s < od.prep ? 0.04 : Math.min(1, (s - od.prep) / od.ride));
+            const pt = pathEl.getPointAtLength(len * frac);
+            riderEl.setAttribute('transform', `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})`);
+          }
+
+          let html = '';
+          let urgent = false;
+
+          if (od.delivered || s >= eta + 4) {
+            if (!od.delivered) { od.delivered = true; changed = true; }
+            urgent = true;
+            badge.className = 'badge b-open';
+            badge.textContent = 'Delivered';
+            html = isHostel
+              ? `<strong>Handed over at ${esc(od.area)} Gate.</strong> Rate your dishes to help others on campus.`
+              : `<strong>Delivered to ${esc(od.address)}.</strong> Rate your dishes to help others on campus.`;
+          } else if (s < od.prep) {
+            const prepLeft = Math.ceil(od.prep - s);
+            badge.className = 'badge b-accent';
+            badge.textContent = 'Preparing';
+            if (isHostel) {
+              const leaveIn = Math.max(0, Math.ceil(left - od.walk));
+              html = `<strong>Preparing · Partner departs in ${prepLeft} min.</strong> Leave your room in <strong class="tabular">${leaveIn} min</strong> (${od.walk} min walk) so you and ${esc(od.rider.name)} reach ${esc(od.area)} Gate together.`;
+            } else {
+              html = `<strong>Preparing · Partner departs in ${prepLeft} min.</strong> Direct ${od.zone === 'residential' ? 'Doorstep' : 'Drop-off Point'} ETA: <strong class="tabular">${Math.ceil(left)} min</strong>.`;
+            }
+          } else if (left > 0) {
+            badge.className = 'badge b-accent';
+            badge.textContent = 'En Route';
+            if (isHostel) {
+              const leaveIn = Math.ceil(left - od.walk);
+              if (leaveIn > 0) {
+                html = `<strong>En Route · Leave your room in ${leaveIn} min</strong> (${od.walk} min walk). Partner arrives at ${esc(od.area)} Gate in <strong class="tabular">${Math.ceil(left)} min</strong>.`;
+              } else {
+                urgent = true;
+                html = `<strong>LEAVE NOW! Walk to ${esc(od.area)} Gate</strong> — partner arrives in <strong class="tabular">${Math.ceil(left)} min</strong> (${od.walk} min walk).`;
+              }
+            } else {
+              html = `Partner is heading toward ${esc(od.address)}. <strong>${od.zone === 'residential' ? 'Doorstep' : 'Drop-off Point'} ETA: ${Math.ceil(left)} min.</strong>`;
+            }
+          } else {
+            urgent = true;
+            badge.className = 'badge b-open';
+            badge.textContent = isHostel ? 'At Gate' : 'Arrived';
+            html = isHostel
+              ? `<strong>Partner is at ${esc(od.area)} Gate!</strong> Ready for handover.`
+              : `<strong>Partner has arrived at ${esc(od.address)}!</strong> Ready for handover.`;
+          }
+
+          nudge.className = `nudge-box ${urgent ? 'urgent' : ''}`;
+          nudge.innerHTML = html;
+        });
+
+        if (changed) {
+          writeLS(STORE.orders, S.orders);
+          renderTabs();
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+         13. TAB 5: ORDER HISTORY & 1-CLICK REORDER
+         ----------------------------------------------------------------------- */
+      function renderOrdersTab() {
+        if (!S.orders.length) {
+          $('#app-view').innerHTML = `
+            <div class="card" style="text-align:center;padding:44px 18px;">
+              <div style="color:var(--muted);margin-bottom:8px;">${ico('receipt', 30)}</div>
+              <h2 style="font-size:19px;font-weight:700;margin-bottom:6px;">No past orders yet</h2>
+              <p class="muted small" style="max-width:410px;margin:0 auto 16px;">
+                Placed orders appear here with printable digital receipts and 1-click reorder.
+              </p>
+              <button type="button" class="btn btn-primary" data-tab="order">Order Now</button>
+            </div>
+          `;
+          return;
+        }
+
+        $('#app-view').innerHTML = `
+          <div class="section-head" style="margin-bottom:12px;">
+            <h2 class="section-title">Order History</h2>
+            <span class="muted small">${S.orders.length} order${S.orders.length > 1 ? 's' : ''} saved locally</span>
+          </div>
+          ${S.orders.map((od) => `
+            <div class="card">
+              <div class="flex-between" style="margin-bottom:8px;">
+                <div>
+                  <div class="flex-row" style="gap:7px;">
+                    <strong style="font-size:16.5px;">${esc(od.outletName)}</strong>
+                    <span class="badge b-closed tabular">#${esc(od.id)}</span>
+                    <span class="badge ${od.delivered ? 'b-open' : 'b-accent'}">${od.delivered ? 'Delivered' : 'Active'}</span>
+                  </div>
+                  <div class="muted small" style="margin-top:2px;">${esc(od.placedAt)} · ${esc(od.address)}</div>
+                </div>
+                <strong class="tabular" style="font-size:16.5px;">₹${od.total}</strong>
+              </div>
+
+              <p style="font-size:13.5px;color:var(--ink-2);margin-bottom:12px;">
+                ${esc(od.items.map((x) => `${x.qty}x ${x.name}`).join(', '))}
+              </p>
+
+              <div class="flex-between">
+                <div class="flex-row">
+                  <button type="button" class="btn btn-primary btn-sm" data-reorder="${esc(od.id)}">
+                    ${ico('rotate', 13)} 1-Click Reorder
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" data-open-receipt="${esc(od.batchId)}">
+                    ${ico('receipt', 13)} Receipt
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" data-open-review="${esc(od.items[0].outletId + '::' + od.items[0].itemId)}">
+                    ${ico('star', 13)} Rate
+                  </button>
+                </div>
+                ${!od.delivered ? `<button type="button" class="btn btn-secondary btn-sm" data-tab="track">Track Live ${ico('arrow-right', 12)}</button>` : ''}
+              </div>
+            </div>
+          `).join('')}
+        `;
+      }
+
+      /* -----------------------------------------------------------------------
+         14. MODALS: PROFILE, REVIEWS, RECEIPT & PARTNER PORTAL
+         ----------------------------------------------------------------------- */
+      const openModal = (id) => { const el = $(`#${id}`); if (el) el.classList.add('open'); };
+      const closeModal = (id) => { const el = $(`#${id}`); if (el) el.classList.remove('open'); };
+
+      function fillProfileZone(zone, areaVal) {
+        S.modalZone = zone;
+        const z = ZONES[zone] || ZONES.hostel;
+        $$('#prof-zone-tabs .zone-btn').forEach((b) => b.classList.toggle('active', b.dataset.zone === zone));
+        $('#pf-area-lbl').textContent = z.areaLabel;
+        $('#pf-detail-lbl').textContent = z.detailLabel;
+        $('#pf-detail').placeholder = z.detailPlaceholder;
+        const sel = $('#pf-area');
+        sel.innerHTML = z.places.map((p) => `<option value="${esc(p.name)}">${esc(p.name)}${p.walk ? ` (${p.walk} min walk to gate)` : ''}</option>`).join('');
+        if (areaVal && z.places.some((p) => p.name === areaVal)) sel.value = areaVal;
+      }
+
+      function openProfileModal() {
+        $('#pf-err').style.display = 'none';
+        fillProfileZone(S.profile.zone || 'hostel', S.profile.area);
+        $('#pf-detail').value = S.profile.detail || '';
+        $('#pf-name').value = S.profile.name || '';
+        $('#pf-phone').value = S.profile.phone || '';
+        $('#pf-email').value = S.profile.email || '';
+        $('#pf-note').value = S.profile.note || '';
+        openModal('profile-modal');
+      }
+
+      function saveProfile() {
+        const next = {
+          zone: S.modalZone,
+          area: $('#pf-area').value,
+          detail: $('#pf-detail').value.trim(),
+          name: $('#pf-name').value.trim(),
+          phone: $('#pf-phone').value.trim(),
+          email: $('#pf-email').value.trim(),
+          note: $('#pf-note').value.trim()
+        };
+        const errs = profileErrors(next);
+        if (errs.length) {
+          $('#pf-err').textContent = `Please enter a valid: ${errs.join(', ')}.`;
+          $('#pf-err').style.display = 'block';
+          return;
+        }
+        S.profile = next;
+        S.userPickedMess = false;
+        writeLS(STORE.profile, S.profile);
+        closeModal('profile-modal');
+        renderAll();
+        toast(`Delivery address updated to ${fmtAddr()}.`);
+      }
+
+      /* Reviews Modal */
+      function openReviewModal(key) {
+        const [oid, iid] = key.split('::');
+        const pair = findPair(oid, iid);
+        if (!pair) return;
+        S.reviewTarget = pair;
+        S.reviewFilterStar = 'all';
+        S.pendingStars = 5;
+        renderReviewModal();
+        openModal('review-modal');
+      }
+
+      function renderReviewModal() {
+        const { outlet, item } = S.reviewTarget;
+        const allRevs = S.reviews[item.id] || [];
+        const r = getItemRating(item.id);
+        const filtered = allRevs.filter((rv) => {
+          if (S.reviewFilterStar === '5') return rv.rating === 5;
+          if (S.reviewFilterStar === '4') return rv.rating === 4;
+          if (S.reviewFilterStar === 'low') return rv.rating <= 3;
+          return true;
+        });
+
+        $('#review-modal-body').innerHTML = `
+          <div style="display:flex;gap:13px;align-items:center;margin-bottom:16px;">
+            <div class="dish-thumb" style="width:72px;height:72px;">${itemVisual(item)}</div>
+            <div>
+              <div class="flex-row" style="gap:6px;">
+                <span class="diet-mark ${item.veg ? '' : 'nv'}" style="margin:0;"></span>
+                <strong style="font-size:16px;">${esc(item.name)}</strong>
+              </div>
+              <div class="muted small">${esc(outlet.name)} · <strong class="tabular">₹${item.price}</strong></div>
+              <div class="flex-row" style="margin-top:6px;">
+                <span class="badge b-amber tabular">${ico('star', 11, 'currentColor')} ${r.avg} / 5</span>
+                <span class="muted small">${allRevs.length} campus review${allRevs.length === 1 ? '' : 's'}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="background:var(--bg);margin-bottom:16px;">
+            <strong style="display:block;margin-bottom:2px;font-size:13.5px;">Write a Review</strong>
+            <div class="star-picker" id="star-picker">
+              ${[1, 2, 3, 4, 5].map((n) => `
+                <button type="button" class="star-btn ${n <= S.pendingStars ? 'lit' : ''}" data-star="${n}" aria-label="${n} stars">
+                  ${ico('star', 22, n <= S.pendingStars ? 'currentColor' : 'none')}
+                </button>
+              `).join('')}
+            </div>
+            <div class="grid-2">
+              <div class="fg"><label class="fl" for="rv-name">Your Name</label><input id="rv-name" class="fc" value="${esc(S.profile.name)}" /></div>
+              <div class="fg"><label class="fl" for="rv-area">Campus Area</label><input id="rv-area" class="fc" value="${esc(S.profile.area)}" /></div>
+            </div>
+            <div class="fg"><label class="fl" for="rv-text">Review</label><textarea id="rv-text" class="fc" rows="2" placeholder="Share taste, portion size, or delivery temperature..."></textarea></div>
+            <div id="rv-err" class="alert alert-err" style="display:none;"></div>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-post-review">Submit Review</button>
+          </div>
+
+          <div class="flex-between" style="margin-bottom:10px;">
+            <strong style="font-size:14px;">Campus Reviews (${filtered.length})</strong>
+            <div class="flex-row" style="gap:5px;">
+              ${[['all', 'All'], ['5', '5★'], ['4', '4★'], ['low', '≤3★']].map(([val, lbl]) => `
+                <button type="button" class="toggle-chip ${S.reviewFilterStar === val ? 'active' : ''}" data-rev-filter="${val}" style="padding:3px 9px;font-size:11.5px;">${lbl}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          ${filtered.length ? filtered.map((rv) => `
+            <div class="rev-item">
+              <div class="flex-between" style="margin-bottom:4px;">
+                <div><strong>${esc(rv.author)}</strong> <span class="muted small">· ${esc(rv.area)}</span></div>
+                <span class="star-ink flex-row" style="gap:2px;">
+                  ${Array.from({ length: 5 }, (_, idx) => ico('star', 12, idx < rv.rating ? 'currentColor' : 'none')).join('')}
+                </span>
+              </div>
+              <p style="font-size:13.5px;color:var(--ink-2);">${esc(rv.text)}</p>
+              <div class="muted" style="font-size:11px;margin-top:4px;">${esc(rv.date)}</div>
+            </div>
+          `).join('') : `<p class="muted small">No reviews in this rating filter yet.</p>`}
+        `;
+      }
+
+      /* Digital Receipt Modal */
+      function openReceiptModal(batchId) {
+        const rc = S.receipts[batchId];
+        if (!rc) { toast('Receipt not found.'); return; }
+        $('#receipt-modal-body').innerHTML = `
+          <div class="alert alert-ok no-print flex-row">
+            ${ico('check', 15)}
+            <span>Digital receipt sent to <strong>${esc(rc.email)}</strong></span>
+          </div>
+          <div class="receipt-box">
+            <div style="text-align:center;margin-bottom:10px;">
+              <div style="font-size:18px;font-weight:800;letter-spacing:-0.02em;">Campus Bytes · IIT Kanpur</div>
+              <div class="muted small tabular">Receipt #${esc(rc.batchId)} · ${esc(rc.placedAt)}</div>
+            </div>
+            <hr class="rcpt-hr" />
+            <div style="font-size:13px;display:grid;gap:3px;">
+              <div><strong>Customer:</strong> ${esc(rc.customerName)}</div>
+              <div><strong>Delivery (${esc(rc.zoneLabel)}):</strong> ${esc(rc.address)}</div>
+              <div><strong>Phone:</strong> ${esc(rc.phone)} · <strong>Email:</strong> ${esc(rc.email)}</div>
+              ${rc.note ? `<div><strong>Note:</strong> ${esc(rc.note)}</div>` : ''}
+            </div>
+            ${rc.orders.map((o) => `
+              <hr class="rcpt-hr" />
+              <div class="flex-between" style="margin-bottom:4px;">
+                <strong>${esc(o.outletName)}</strong>
+                <span class="muted small tabular">#${esc(o.id)}</span>
+              </div>
+              ${o.items.map((it) => `<div class="rcpt-row tabular"><span>${it.qty}x ${esc(it.name)}</span><span>₹${it.price * it.qty}</span></div>`).join('')}
+              <div class="rcpt-row tabular" style="font-weight:700;margin-top:3px;"><span>Subtotal</span><span>₹${o.total}</span></div>
+            `).join('')}
+            <hr class="rcpt-hr" />
+            <div class="rcpt-row tabular" style="font-size:17px;font-weight:800;"><span>Grand Total</span><span>₹${rc.grandTotal}</span></div>
+            <p class="muted small" style="text-align:center;margin-top:8px;">
+              Pay directly to each outlet's delivery partner via UPI or Cash at handover.
+            </p>
+          </div>
+          <div class="flex-between no-print" style="margin-top:14px;">
+            <button type="button" class="btn btn-secondary" id="btn-print-rcpt">
+              ${ico('printer', 14)} Print / Save PDF
+            </button>
+            <button type="button" class="btn btn-primary" data-close-modal="receipt-modal">
+              Go to Live Track ${ico('arrow-right', 13)}
+            </button>
+          </div>
+        `;
+        openModal('receipt-modal');
+      }
+
+      /* Partner Portal Modal */
+      function compressPhoto(file, cb) {
+        const fr = new FileReader();
+        fr.onload = (ev) => {
+          const img = new Image();
+          img.onload = () => {
+            const max = 420;
+            let { width: w, height: h } = img;
+            if (w > max || h > max) {
+              if (w > h) { h = Math.round((h * max) / w); w = max; }
+              else { w = Math.round((w * max) / h); h = max; }
+            }
+            const cv = document.createElement('canvas');
+            cv.width = w; cv.height = h;
+            cv.getContext('2d').drawImage(img, 0, 0, w, h);
+            try { cb(cv.toDataURL('image/jpeg', 0.78)); } catch { cb(ev.target.result); }
+          };
+          img.src = ev.target.result;
+        };
+        fr.readAsDataURL(file);
+      }
+
+      function renderPartnerModal() {
+        const outlets = getOutlets();
+        const o = outlets.find((x) => x.id === S.partnerOutletId) || outlets[0];
+        S.partnerOutletId = o.id;
+        S.partnerPhotoDraft = null;
+        S.partnerSpecialPhotoDraft = null;
+
+        const closeOpts = [20, 21, 22, 23, 23.5, 24, 25, 26];
+
+        $('#partner-modal-body').innerHTML = `
+          <div class="grid-2" style="margin-bottom:14px;">
+            <div class="fg" style="margin:0;">
+              <label class="fl" for="pt-outlet">Manage Outlet</label>
+              <select id="pt-outlet" class="fc">
+                ${outlets.map((x) => `<option value="${esc(x.id)}" ${x.id === o.id ? 'selected' : ''}>${esc(x.name)} (${esc(x.zone)})</option>`).join('')}
+              </select>
+            </div>
+            <div class="fg" style="margin:0;">
+              <label class="fl" for="pt-close">Today's Closing Time</label>
+              <select id="pt-close" class="fc">
+                ${closeOpts.map((h) => `<option value="${h}" ${o.close === h ? 'selected' : ''}>${fmtHour(h)}${h >= 24 ? ' (Late Night)' : ''}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+
+          <!-- Upload Real Dish Photo -->
+          <div class="card" style="background:var(--bg);margin-bottom:14px;">
+            <strong class="flex-row" style="margin-bottom:9px;font-size:14px;">${ico('camera', 15)} Upload Real Dish Photo</strong>
+            <div class="grid-2" style="align-items:center;">
+              <div class="fg" style="margin:0;">
+                <label class="fl" for="pt-photo-item">Select Dish</label>
+                <select id="pt-photo-item" class="fc">
+                  ${o.items.map((it) => `<option value="${esc(it.id)}">${esc(it.name)} (₹${it.price})</option>`).join('')}
+                </select>
+              </div>
+              <div class="fg" style="margin:0;">
+                <label class="fl" for="pt-photo-file">Image File</label>
+                <input type="file" id="pt-photo-file" accept="image/*" style="width:100%;font-size:12.5px;" />
+              </div>
+            </div>
+            <div class="flex-between" style="margin-top:10px;">
+              <div class="flex-row">
+                <div class="dish-thumb" style="width:52px;height:52px;" id="pt-photo-prev">${itemVisual(o.items[0])}</div>
+                <span class="muted small">Auto-compressed for fast loading on campus mobile networks.</span>
+              </div>
+              <div class="flex-row">
+                <button type="button" class="btn btn-primary btn-sm" id="btn-pt-save-photo">Save Photo</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-pt-reset-photo">Revert</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Stock Toggle -->
+          <div class="card" style="margin-bottom:14px;">
+            <strong style="display:block;margin-bottom:9px;font-size:14px;">Live Item Availability</strong>
+            <div style="max-height:200px;overflow-y:auto;padding-right:4px;">
+              ${o.items.map((it) => {
+                const so = !!S.soldOut[it.id];
+                return `
+                  <div class="stock-row">
+                    <div class="flex-row">
+                      <span class="diet-mark ${it.veg ? '' : 'nv'}" style="margin:0;"></span>
+                      <strong>${esc(it.name)}</strong>
+                      <span class="muted tabular">₹${it.price}</span>
+                    </div>
+                    <button type="button" class="btn btn-sm ${so ? 'btn-danger' : 'btn-secondary'}" data-toggle-stock="${esc(it.id)}">
+                      ${so ? 'Sold Out (Restock)' : 'In Stock'}
+                    </button>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <!-- Add Today's Special -->
+          <div class="card" style="margin-bottom:0;">
+            <strong style="display:block;margin-bottom:9px;font-size:14px;">Add Today's Special to ${esc(o.name)}</strong>
+            <div class="grid-2">
+              <div class="fg"><label class="fl" for="sp-name">Dish Name *</label><input id="sp-name" class="fc" placeholder="e.g., Tandoori Cheese Momos" /></div>
+              <div class="fg"><label class="fl" for="sp-price">Price (₹) *</label><input id="sp-price" type="number" class="fc" min="10" placeholder="149" /></div>
+            </div>
+            <div class="grid-2">
+              <div class="fg">
+                <label class="fl" for="sp-cat">Category Illustration</label>
+                <select id="sp-cat" class="fc">
+                  <option value="burger">Burger</option><option value="pizza">Pizza</option>
+                  <option value="momos">Momos</option><option value="roll">Roll / Wrap</option>
+                  <option value="biryani">Biryani</option><option value="curry">Curry</option>
+                  <option value="coffee">Coffee</option><option value="waffle">Waffle / Dessert</option>
+                  <option value="bowl">Healthy Bowl</option><option value="dosa">South Indian</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label class="fl" for="sp-veg">Dietary Type</label>
+                <select id="sp-veg" class="fc">
+                  <option value="1">Vegetarian</option>
+                  <option value="0">Non-Vegetarian</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg">
+              <label class="fl" for="sp-photo">Optional Photo</label>
+              <input type="file" id="sp-photo" accept="image/*" style="font-size:12.5px;" />
+            </div>
+            <button type="button" class="btn btn-primary" id="btn-pt-add-special" style="width:100%;">Publish Today's Special Live</button>
+          </div>
+        `;
+      }
+
+      /* -----------------------------------------------------------------------
+         15. MASTER RENDER ORCHESTRATOR
+         ----------------------------------------------------------------------- */
+      function renderAll() {
+        updateHeaderAndHero();
+        renderTabs();
+        updateFloatingCart();
+
+        if (S.tab === 'order') renderOrderTab();
+        else if (S.tab === 'mess') renderMessTab();
+        else if (S.tab === 'cart') renderCartTab();
+        else if (S.tab === 'track') renderTrackTab();
+        else if (S.tab === 'orders') renderOrdersTab();
+      }
+
+      /* -----------------------------------------------------------------------
+         16. EVENT LISTENERS & DELEGATION
+         ----------------------------------------------------------------------- */
+      $('#btn-brand-home').addEventListener('click', () => {
+        S.tab = 'order';
+        S.category = 'all';
+        renderAll();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      $('#btn-open-profile').addEventListener('click', openProfileModal);
+      $('#btn-open-partner').addEventListener('click', () => { renderPartnerModal(); openModal('partner-modal'); });
+
+      $('#btn-theme').addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+      });
+
+      $('#time-sim').addEventListener('change', (e) => {
+        S.time = e.target.value;
+        renderAll();
+      });
+
+      $('#global-search').addEventListener('input', (e) => {
+        S.q = e.target.value;
+        if (S.tab !== 'order') S.tab = 'order';
+        updateHeaderAndHero();
+        renderTabs();
+        if (!$('#outlet-feed')) renderOrderTab();
+        else renderOutletFeed();
+      });
+
+      $('#btn-clear-search').addEventListener('click', () => {
+        S.q = '';
+        $('#global-search').value = '';
+        renderAll();
+      });
+
+      $('#btn-fc-go').addEventListener('click', () => {
+        S.tab = 'cart';
+        renderAll();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      $('#tab-nav').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-tab]');
+        if (!b) return;
+        S.tab = b.dataset.tab;
+        renderAll();
+      });
+
+      // Modal Closures
+      document.addEventListener('click', (e) => {
+        const cl = e.target.closest('[data-close-modal]');
+        if (cl) { closeModal(cl.dataset.closeModal); return; }
+        if (e.target.classList.contains('modal-backdrop')) e.target.classList.remove('open');
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') $$('.modal-backdrop.open').forEach((m) => m.classList.remove('open'));
+      });
+
+      // Profile Modal Events
+      $('#prof-zone-tabs').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-zone]');
+        if (b) fillProfileZone(b.dataset.zone);
+      });
+      $('#btn-save-profile').addEventListener('click', saveProfile);
+
+      // Review Modal Events
+      $('#review-modal-body').addEventListener('click', (e) => {
+        const st = e.target.closest('[data-star]');
+        if (st) {
+          S.pendingStars = Number(st.dataset.star);
+          $$('#star-picker .star-btn').forEach((b) => {
+            const lit = Number(b.dataset.star) <= S.pendingStars;
+            b.classList.toggle('lit', lit);
+            b.innerHTML = ico('star', 22, lit ? 'currentColor' : 'none');
+          });
+          return;
+        }
+        const flt = e.target.closest('[data-rev-filter]');
+        if (flt) {
+          S.reviewFilterStar = flt.dataset.revFilter;
+          renderReviewModal();
+          return;
+        }
+        if (e.target.closest('#btn-post-review')) {
+          const author = $('#rv-name').value.trim();
+          const area = $('#rv-area').value.trim() || S.profile.area;
+          const text = $('#rv-text').value.trim();
+          if (!author || !text) {
+            $('#rv-err').textContent = 'Please enter both your name and a short review.';
+            $('#rv-err').style.display = 'block';
+            return;
+          }
+          const iid = S.reviewTarget.item.id;
+          S.reviews[iid] = S.reviews[iid] || [];
+          S.reviews[iid].unshift({ id: 'rv-' + Date.now(), author, area, rating: S.pendingStars, text, date: 'Just now' });
+          writeLS(STORE.reviews, S.reviews);
+          renderReviewModal();
+          if (S.tab === 'order') renderOutletFeed();
+          toast('Review posted and rating updated.');
+        }
+      });
+
+      // Receipt Print
+      $('#receipt-modal-body').addEventListener('click', (e) => {
+        if (e.target.closest('#btn-print-rcpt')) window.print();
+      });
+
+      // Partner Portal Events
+      $('#partner-modal-body').addEventListener('change', (e) => {
+        const t = e.target;
+        if (t.id === 'pt-outlet') {
+          S.partnerOutletId = t.value;
+          renderPartnerModal();
+        } else if (t.id === 'pt-close') {
+          S.customClose[S.partnerOutletId] = Number(t.value);
+          writeLS(STORE.customClose, S.customClose);
+          renderAll();
+          toast(`Closing time updated to ${fmtHour(Number(t.value))}.`);
+        } else if (t.id === 'pt-photo-item') {
+          const pair = findPair(S.partnerOutletId, t.value);
+          if (pair) $('#pt-photo-prev').innerHTML = itemVisual(pair.item);
+        } else if (t.id === 'pt-photo-file' && t.files[0]) {
+          compressPhoto(t.files[0], (url) => {
+            S.partnerPhotoDraft = url;
+            $('#pt-photo-prev').innerHTML = `<img src="${url}" alt="Preview" />`;
+          });
+        } else if (t.id === 'sp-photo' && t.files[0]) {
+          compressPhoto(t.files[0], (url) => { S.partnerSpecialPhotoDraft = url; });
+        }
+      });
+
+      $('#partner-modal-body').addEventListener('click', (e) => {
+        const t = e.target.closest('button');
+        if (!t) return;
+        if (t.id === 'btn-pt-save-photo') {
+          if (!S.partnerPhotoDraft) { toast('Choose an image file first.'); return; }
+          const iid = $('#pt-photo-item').value;
+          S.photos[iid] = S.partnerPhotoDraft;
+          if (writeLS(STORE.photos, S.photos)) {
+            toast('Real dish photo is now live on the menu.');
+            renderPartnerModal();
+            renderAll();
+          }
+        } else if (t.id === 'btn-pt-reset-photo') {
+          const iid = $('#pt-photo-item').value;
+          delete S.photos[iid];
+          writeLS(STORE.photos, S.photos);
+          toast('Reverted to default illustration.');
+          renderPartnerModal();
+          renderAll();
+        } else if (t.dataset.toggleStock) {
+          const iid = t.dataset.toggleStock;
+          if (S.soldOut[iid]) delete S.soldOut[iid];
+          else S.soldOut[iid] = true;
+          writeLS(STORE.soldOut, S.soldOut);
+          renderPartnerModal();
+          renderAll();
+          toast(S.soldOut[iid] ? 'Marked as Sold Out.' : 'Item restocked.');
+        } else if (t.id === 'btn-pt-add-special') {
+          const name = $('#sp-name').value.trim();
+          const price = Number($('#sp-price').value);
+          const cat = $('#sp-cat').value;
+          const veg = $('#sp-veg').value === '1';
+          if (!name || !price || price < 10) { toast('Enter a valid dish name and price.'); return; }
+          const nid = 'sp-' + Date.now();
+          S.customItems[S.partnerOutletId] = S.customItems[S.partnerOutletId] || [];
+          S.customItems[S.partnerOutletId].push({ id: nid, name, price, veg, cat, tag: "Today's Special" });
+          writeLS(STORE.customItems, S.customItems);
+          if (S.partnerSpecialPhotoDraft) {
+            S.photos[nid] = S.partnerSpecialPhotoDraft;
+            writeLS(STORE.photos, S.photos);
+          }
+          S.expanded.add(S.partnerOutletId);
+          toast(`"${name}" published live.`);
+          renderPartnerModal();
+          renderAll();
+        }
+      });
+
+      // Delegated Main View Events
+      $('#app-view').addEventListener('click', (e) => {
+        const t = e.target;
+
+        const tabBtn = t.closest('[data-tab]');
+        if (tabBtn) { S.tab = tabBtn.dataset.tab; renderAll(); return; }
+
+        const jumpBtn = t.closest('[data-jump-outlet]');
+        if (jumpBtn) {
+          const id = jumpBtn.dataset.jumpOutlet;
+          S.expanded.add(id);
+          renderOutletFeed();
+          const target = $(`#outlet-${safeEscapeAttr(id)}`);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+
+        const catBtn = t.closest('[data-cat]');
+        if (catBtn) { S.category = catBtn.dataset.cat; renderOrderTab(); return; }
+
+        const togBtn = t.closest('[data-toggle]');
+        if (togBtn) { S[togBtn.dataset.toggle] = !S[togBtn.dataset.toggle]; renderOrderTab(); return; }
+
+        if (t.closest('#btn-reset-filters')) {
+          S.q = ''; $('#global-search').value = '';
+          S.category = 'all'; S.vegOnly = false; S.openOnly = false; S.under150 = false;
+          renderAll();
+          return;
+        }
+
+        const outHead = t.closest('[data-toggle-outlet]');
+        if (outHead) {
+          const oid = outHead.dataset.toggleOutlet;
+          if (S.expanded.has(oid)) S.expanded.delete(oid);
+          else S.expanded.add(oid);
+          const card = outHead.closest('.outlet-card');
+          if (card) {
+            const open = card.classList.toggle('open');
+            outHead.setAttribute('aria-expanded', String(open));
+          }
+          return;
+        }
+
+        const addB = t.closest('[data-add]');
+        const subB = t.closest('[data-sub]');
+        if (addB || subB) {
+          const k = (addB || subB).dataset[addB ? 'add' : 'sub'];
+          const nq = (S.cart[k] || 0) + (addB ? 1 : -1);
+          if (nq <= 0) delete S.cart[k];
+          else S.cart[k] = nq;
+
+          if (S.tab === 'order') {
+            const slot = $(`[data-qty="${safeEscapeAttr(k)}"]`);
+            if (slot) slot.innerHTML = qtyControl(k, true, false);
+            renderTabs();
+            updateFloatingCart();
+          } else {
+            renderAll();
+          }
+          return;
+        }
+
+        const revBtn = t.closest('[data-open-review]');
+        if (revBtn) { openReviewModal(revBtn.dataset.openReview); return; }
+
+        // Mess Events
+        const messHallBtn = t.closest('[data-mess-hall]');
+        if (messHallBtn) {
+          S.messHall = messHallBtn.dataset.messHall;
+          S.userPickedMess = true;
+          renderMessTab();
+          return;
+        }
+
+        const voteBtn = t.closest('[data-mess-vote]');
+        if (voteBtn) {
+          const [dir, key] = voteBtn.dataset.messVote.split('|');
+          const cur = S.messVotes[key] || { up: 19, down: 4, user: null };
+          if (cur.user === dir) { cur[dir]--; cur.user = null; }
+          else {
+            if (cur.user) cur[cur.user]--;
+            cur[dir]++;
+            cur.user = dir;
+          }
+          S.messVotes[key] = cur;
+          writeLS(STORE.messVotes, S.messVotes);
+          renderMessTab();
+          toast('Mess vote saved.');
+          return;
+        }
+
+        if (t.closest('#btn-mess-open-outlets')) {
+          S.openOnly = true;
+          S.category = 'all';
+          S.tab = 'order';
+          renderAll();
+          return;
+        }
+
+        // Cart Events
+        if (t.closest('#btn-cart-edit-prof')) { openProfileModal(); return; }
+
+        if (t.closest('#btn-drop-closed')) {
+          cartGroups().forEach((g) => { if (!isOpen(g.outlet)) g.entries.forEach((en) => delete S.cart[en.key]); });
+          toast('Removed items from closed outlets.');
+          renderAll();
+          return;
+        }
+
+        if (t.closest('#btn-drop-soldout')) {
+          cartGroups().forEach((g) => g.entries.forEach((en) => { if (en.soldOut) delete S.cart[en.key]; }));
+          toast('Removed sold-out items.');
+          renderAll();
+          return;
+        }
+
+        if (t.closest('#btn-add-member')) {
+          const inp = $('#new-member-input');
+          const nm = (inp.value || '').trim();
+          if (!nm) return;
+          if (!S.groupMembers.includes(nm)) S.groupMembers.push(nm);
+          renderCartTab();
+          return;
+        }
+
+        const delM = t.closest('[data-del-member]');
+        if (delM) {
+          S.groupMembers = S.groupMembers.filter((m) => m !== delM.dataset.delMember);
+          renderCartTab();
+          return;
+        }
+
+        if (t.closest('#btn-copy-split')) {
+          const { groups, total } = cartSummary();
+          const split = computeGroupSplit(groups);
+          const lines = [
+            `Campus Bytes group order split (Total: ₹${total})`,
+            ...Object.entries(split).filter(([, v]) => v.amount > 0).map(([p, v]) => `- ${p}: ₹${v.amount} (${v.lines.join(', ')})`),
+            `Delivering to: ${fmtAddr()}`
+          ];
+          copyTextSafe(lines.join('\n'));
+          return;
+        }
+
+        if (t.closest('#btn-place-order')) { checkoutOrder(); return; }
+
+        // Tracking & History Events
+        if (t.closest('#btn-sim-pause')) { S.clockPaused = !S.clockPaused; renderTrackTab(); return; }
+
+        if (t.closest('#btn-sim-ff')) {
+          S.orders.forEach((od) => { if (!od.delivered) od.elapsed += 2; });
+          writeLS(STORE.orders, S.orders);
+          tickTrackingUI();
+          return;
+        }
+
+        const callLnk = t.closest('[data-call-rider]');
+        if (callLnk) {
+          const od = S.orders.find((o) => o.id === callLnk.dataset.callRider);
+          if (od) toast(`Calling ${od.rider.name} (+91 ${od.rider.phone})...`);
+          return;
+        }
+
+        const rcptB = t.closest('[data-open-receipt]');
+        if (rcptB) { openReceiptModal(rcptB.dataset.openReceipt); return; }
+
+        const doneB = t.closest('[data-mark-done]');
+        if (doneB) {
+          const od = S.orders.find((o) => o.id === doneB.dataset.markDone);
+          if (od) {
+            od.delivered = true;
+            writeLS(STORE.orders, S.orders);
+            renderAll();
+            toast(`Handover confirmed for ${od.outletName}.`);
+          }
+          return;
+        }
+
+        const reord = t.closest('[data-reorder]');
+        if (reord) {
+          const od = S.orders.find((o) => o.id === reord.dataset.reorder);
+          if (od) {
+            od.items.forEach((it) => {
+              const k = `${it.outletId}::${it.itemId}`;
+              S.cart[k] = (S.cart[k] || 0) + it.qty;
+            });
+            S.tab = 'cart';
+            renderAll();
+            toast(`Added ${od.outletName} items to your cart.`);
+          }
+        }
+      });
+
+      $('#app-view').addEventListener('change', (e) => {
+        const t = e.target;
+        if (t.id === 'sort-select') { S.sortBy = t.value; renderOutletFeed(); }
+        else if (t.id === 'chk-group-mode') { S.groupMode = t.checked; renderCartTab(); updateFloatingCart(); }
+        else if (t.dataset.assignItem) { S.cartAssign[t.dataset.assignItem] = t.value; renderCartTab(); }
+        else if (t.hasAttribute('data-rate-select') && t.value) { openReviewModal(t.value); t.value = ''; }
+      });
+
+      $('#app-view').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.id === 'new-member-input') {
+          e.preventDefault();
+          const btn = $('#btn-add-member');
+          if (btn) btn.click();
+        }
+      });
+
+      // Inline two-step Reset Demo Data (no confirm/alert)
+      $('#reset-slot').addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        if (btn.id === 'btn-reset-ask') {
+          $('#reset-slot').innerHTML = `
+            <span class="small muted" style="margin-right:6px;">Reset all saved data?</span>
+            <button type="button" class="btn btn-danger btn-sm" id="btn-reset-yes">Yes, Reset</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-no">Cancel</button>
+          `;
+        } else if (btn.id === 'btn-reset-no') {
+          $('#reset-slot').innerHTML = `<button type="button" class="btn btn-secondary btn-sm" id="btn-reset-ask">Reset Demo Data</button>`;
+        } else if (btn.id === 'btn-reset-yes') {
+          Object.values(STORE).forEach((k) => { try { localStorage.removeItem(k); } catch {} });
+          S.profile = { ...DEFAULT_PROFILE };
+          S.photos = {};
+          S.reviews = clone(DEFAULT_REVIEWS);
+          S.soldOut = {};
+          S.customItems = {};
+          S.customClose = {};
+          S.cart = {};
+          S.orders = [];
+          S.receipts = {};
+          S.messVotes = {};
+          S.tab = 'order';
+          $('#reset-slot').innerHTML = `<button type="button" class="btn btn-secondary btn-sm" id="btn-reset-ask">Reset Demo Data</button>`;
+          renderAll();
+          toast('Demo data reset.');
+        }
+      });
+
+      // Live Delivery Simulation Ticker (1 real second = 1 simulated minute)
+      setInterval(() => {
+        if (S.clockPaused || !S.orders.length) return;
+        let moving = false;
+        S.orders.forEach((od) => {
+          if (!od.delivered) { od.elapsed += 0.5; moving = true; }
+        });
+        if (moving && S.tab === 'track') tickTrackingUI();
+      }, 500);
+
+      // Boot on Window Load
+      window.addEventListener('load', () => {
+        initStaticIcons();
+        const savedTheme = readLS(STORE.theme, null);
+        const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(savedTheme || (sysDark ? 'dark' : 'light'), false);
+        renderAll();
+      });
+    })();
+  </script>
+</body>
+</html>
